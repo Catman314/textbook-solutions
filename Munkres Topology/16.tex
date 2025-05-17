@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\begin{document}
+\addtocounter{section}{15}
+\section{Order / Product / Subspace}
+
+\begin{exercise}
+  Show that if $Y$ is a subspace of $X$ and $A\subseteq Y$, then the subspace topology of $A$ in $X$ is the same as in $Y$.
+\end{exercise}
+\begin{proof}[Solution]
+  The subspace topology of $A$ in $Y$ is the sets $U\cap A$, where $U$ is open in $Y$. These are just the sets $(V\cap Y)\cap A = V\cap A$ where $V$ is open in $X$, which are the same sets in the subspace topology of $A$ in $X$.
+\end{proof}
+
+\begin{exercise}
+  If $\mathcal{T},\mathcal{T}'$ are topologies on $X$ and $\mathcal{T}'$ is strictly finer than $\mathcal{T}$, what can be said about the corresponding subspace topologies of $Y\subseteq X$?
+\end{exercise}
+\begin{proof}[Solution]
+  The subspace topology with respect to $\mathcal{T}$ is clearly finer than the one in $\mathcal{T}'$, but not necessarily strictly finer. For example, let $Y$ be the empty set.
+\end{proof}
+
+
+\begin{exercise}
+  Consider the set $Y=[-1,1]$ as a subspace of $\mathbb{R}$. Which of the following sets are open in $Y$? Which are open in $\mathbb{R}$?
+  \begin{itemize}
+    \item $A = \{x\mid 1/2 < |x| < 1\}$
+    \item $B = \{x\mid 1/2 < |x| \le 1\}$
+    \item $C = \{x\mid 1/2 \le |x| < 1\}$
+    \item $D = \{x\mid 1/2 \le |x| \le 1\}$
+    \item $E = \{x\mid 0 < |x| < 1 \text{ and } 1/x\notin\mathbb{Z}_+\}$
+  \end{itemize}
+\end{exercise}
+\begin{proof}[Solution]
+  $A,B,E$ are open in $Y$, and $A,E$ are open in $\mathbb{R}$.
+\end{proof}
+
+
+\begin{exercise}
+  A map $f:X\to Y$ is called an \textbf{open map} if $f(U)$ is open in $Y$ for each $U$ open in $X$. Show that the projection maps $\pi_1$ and $\pi_2$ are open.
+\end{exercise}
+\begin{proof}[Solution]
+  I will only do $\pi_1$. Let $U$ be open in $X\times Y$, and choose $x\in\pi_1(U)$. Then we have $(x,y)\in U$ for some $y\in Y$, so $(x,y)\in(A\times B)\subseteq U$ for some basis set $A\times B$. Then $$A = \pi_1(A\times B)\subseteq\pi_1(U).$$
+  Since $x$ was arbitrary, $\pi_1(U)$ is open.
+\end{proof}
+
+
+\begin{exercise}
+  Let $X$ and $X'$ denote a single set in the topologies $\mathcal{T}$ and $\mathcal{T}'$ respectively; let $Y$ and $Y'$ denote a single set in the topologies $\mathcal{U}$ and $\mathcal{U}'$ respectively. Assume these sets are nonempty. Show that if $\mathcal{T}'\supseteq\mathcal{T}$ and $\mathcal{U}'\supseteq\mathcal{U}$, then the product topology on $X'\times Y'$ is finer than the product topology on $X\times Y$. Does the converse hold?
+\end{exercise}
+\begin{proof}[Solution]
+  This is clearly true because the basis of $X\times Y$ is a subset of the basis of $X'\times Y'$.
+
+  For the converse, we will just show $\mathcal{T}'\supseteq\mathcal{T}$. Let $U$ be open in $X$ and choose $x\in U$. Since $Y$ is nonempty, pick an arbitrary $y\in Y$. Then we have $U\times Y$ is open in $X\times Y$, so it's also open in $X'\times Y'$. We can pick a basis set $A\times B\subseteq X'\times Y'$ contained within $U\times Y$ which contains the point $(x,y)$. Therefore, we have $x\in A\subseteq U$, where $A$ is open in $X'$. Since $x$ was arbitrary, we have shown that $\mathcal{T}'\supseteq\mathcal{T}$
+\end{proof}
+
+
+\begin{exercise}
+  Show that the countable collection
+  $$\{(a,b)\times (c,d)\mid a,b,c,d\in\mathbb{Q}\}$$
+  is a basis for $\mathbb{R}^2$
+\end{exercise}
+\begin{proof}[Solution]
+  We've shown in a previous exercise that $\{(a,b)\mid a,b\in\mathbb{Q}\}$ is a basis for $\mathbb{R}$, so we can just apply Theorem 15.1
+\end{proof}
+
+
+\begin{exercise}
+  Let $X$ be an ordered set. If $Y\subset X$ is convex in $X$, does it follow that $Y$ is an interval or ray?
+\end{exercise}
+\begin{proof}[Solution]
+  It does not. For example, the set $\{x\mid x^2 < 2\}$ is not expressible as an interval in $\mathbb{Q}$. The key property required for this to hold is completeness.
+\end{proof}
+
+
+\begin{exercise}
+  If $L$ is a straight line in the plane, describe the topology $L$ inherits as a subspace of $\mathbb{R}_\ell\times\mathbb{R}$ and as a subspace of $\mathbb{R}_\ell\times\mathbb{R}_\ell$.
+\end{exercise}
+\begin{proof}[Solution] The results are summarized below:
+  $$
+  \begin{array}{c|c|c}
+    & \mathbb{R}_\ell\times\mathbb{R} & \mathbb{R}_\ell\times\mathbb{R}_\ell \\\hline
+    \uparrow & \mathbb{R} & \mathbb{R}_\ell \\\hline
+    \nearrow & \mathbb{R}_\ell & \mathbb{R}_\ell \\\hline
+    \rightarrow & \mathbb{R}_\ell & \mathbb{R}_\ell \\\hline
+    \searrow & \mathbb{R}_\ell & \text{discrete}
+  \end{array}
+  $$
+\end{proof}
+
+
+\begin{exercise}
+  Show that the dictionary order topology on the set $\mathbb{R}\times\mathbb{R}$ is the same as the product topology $\mathbb{R}_d\times\mathbb{R}$, where $\mathbb{R}_d$ denotes $\mathbb{R}$ in the discrete topology. Compare
+  this topology with the standard topology on $\mathbb{R}^2$.
+\end{exercise}
+\begin{proof}[Solution]
+  Every basis element of $\mathbb{R}_d\times\mathbb{R}$ is also a basis element of $\mathbb{R}\times\mathbb{R}$ in the dictionary ordering. Now let $((a\times b),(c\times d))$ be a basis interval in the dictionary ordering. If $a = c$ and $b < d$, then this is also a basis set of $\mathbb{R}_d\times\mathbb{R}$. Now suppose that $a < c$. Then we have
+  $$((a\times b),(c\times d)) = (\{a\}\times(a,\infty)) \cup ((a,c)\times\mathbb{R})\cup (\{c\}\times(-\infty,d)),$$
+  which is open in $\mathbb{R}_d\times\mathbb{R}$ as the union of 3 open sets. Therefore, the topologies are indeed the same.
+
+  By Exercise 16.5, this topology is finer than the standard topology on $\mathbb{R}^2$.
+\end{proof}
+
+
+\begin{exercise}
+  Let $I = [0,1]$. Compare the product topology of $I\times I$, the dictionary order topology of $I\times I$, and the topology of $I\times I$ inherited as a subspace of the dictionary order in $\mathbb{R}^2$.
+\end{exercise}
+\begin{proof}[Solution]
+  \begin{itemize}
+    \item $[0,1]\times(1/2,1]$ is open in the product topology, but not the dictionary order (consider the point $(0\times 1)$).
+    \item $\{1/2\}\times (0,1)$ is open in the dictionary order or the space inherited from dictionary order of $\mathbb{R}^2$, but not the product topology.
+    \item From Exercise 16.9, we know the dictionary topology in $\mathbb{R}^2$ is finer than the standard topology. Reducing to $I\times I$ via subspaces, the space inherited from the dictionary topology in $\mathbb{R}^2$ is finer than the product.
+    \item $\{1/2\}\times[0,1]$ is open in the inherited space, but not the dictionary space.
+    \item To conclude, the only comparison is that the inherited space is strictly finer than the other two.
+  \end{itemize}
+\end{proof}
+
+
+
+\end{document}
