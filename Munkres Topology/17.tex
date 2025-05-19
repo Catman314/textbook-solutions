@@ -1,0 +1,309 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{lemma}{Lemma}[exercise]
+
+\DeclareMathOperator{\Bd}{\mathrm{Bd}}
+\DeclareMathOperator{\Int}{\mathrm{Int}}
+
+\begin{document}
+\addtocounter{section}{16}
+\section{Closed Sets and Limit Points}
+
+\begin{exercise}
+  Let $\mathcal{C}$ be a collection of subsets of $X$. Suppose that $\emptyset$ and $X$ are in $\mathcal{C}$, and finite unions and arbitrary intersections of elements in $\mathcal{C}$ are also in $\mathcal{C}$. Show that
+  $$\{X - C\mid C\in\mathcal{C}\}$$
+  is a topology on $X$.
+\end{exercise}
+\begin{proof}[Solution]
+  Trivial application of DeMorgan's laws.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  If $A$ is closed in $Y$ and $Y$ is closed in $X$, then $A$ is closed in $X$.
+\end{exercise}
+\begin{proof}[Solution]
+  Since $A$ is closed in $Y$, we have $A = Y\cap B$ for some $B$ which is closed in $X$. Now $A$ is the intersection of closed sets, so $A$ is closed in $X$.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  If $A$ is closed in $X$ and $B$ is closed in $Y$, then $A\times B$ is closed in $X\times Y$.
+\end{exercise}
+\begin{proof}[Solution]
+  We have
+  $$A\times B = (X\times Y) - (((X-A)\times Y) \cap (X\times (Y-B))),$$
+  so we've written $A\times B$ as the complement of an open set.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  If $U$ is open in $X$ and $A$ is closed, then $U - A$ is open and $A - U$ is closed.
+\end{exercise}
+\begin{proof}[Solution]
+  We have $U - A = U\cap (X - A)$ and $A - U = A\cap (X - U)$.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $X$ be an ordered set in the order topology. Show that $\overline{(a,b)}\subseteq [a,b]$. Under what conditions does equality hold?
+\end{exercise}
+\begin{proof}[Solution]
+  If $x < a$, then $x\in (-\infty,a)$, which is open, thus $x\notin\overline{(a,b)}$. A similar argument applies if $x > b$, so we have $\overline{(a,b)}\subseteq[a,b]$.
+
+  Equality holds if and only if both $a$ and $b$ are limit points of $(a,b)$. This happens exactly when $a$ has no immediate successor and $b$ has no immediate predecessor.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $A,B,A_\alpha$ denote subsets of a space $X$.
+  \begin{enumerate}[(a)]
+    \item If $A\subseteq B$, then $\bar{A}\subseteq\bar{B}$
+    \item $\overline{A\cup B} = \bar{A}\cup\bar{B}$
+  \end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+  (a) If $x\in A$, then $x\in B$. If $x$ is a limit point of $A$, then $x$ is a limit point of $B$. Therefore, $\bar{A}\subseteq\bar{B}$.
+
+  (b) $\overline{A\cup B}$ is a closed set including both $A$ and $B$, therefore $\bar{A}\cup\bar{B}\subseteq\overline{A\cup B}$. This argument also applies with (c). In (b), we have that $\bar{A}\cup\bar{B}$ is closed because it's the finite union of closed sets. Also, $\bar{A}\cup\bar{B}$ contains $A\cup B$, thus we have $\overline{A\cup B}\subseteq\bar{A}\cup\bar{B}$.
+
+  (c) An example where equality fails is $A_n = [1/n,\infty]$ for each $n\in\mathbb{N}$.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Criticize the following "proof" that $\overline{\bigcup A_\alpha}\subseteq \bigcup\overline{A_\alpha}$. If $\{A_\alpha\}$ is a collection of sets in $X$ and if $x\in\overline{\bigcup A_\alpha}$, then every neighborhood $U$ of $x$ intersects $\bigcup A_\alpha$. Thus $U$ must intersect some $A_\alpha$, so that $x$ must belong to the closure of some $A_\alpha$. Therefore, $x\in\bigcup\overline{A_\alpha}$.
+\end{exercise}
+\begin{proof}[Solution]
+  $U$ does intersect some $A_\alpha$, but this isn't true for this particular $A_\alpha$ for all $U$. This argument can be made to work if $\{A_\alpha\}$ is finite.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $A,B,A_\alpha$ denote subsets of a space $X$. Prove or disprove the following, and state whether an inclusion applies instead.
+  \begin{enumerate}[(a)]
+    \item $\overline{A\cap B} = \bar{A}\cap\bar{B}$
+    \item $\overline{\bigcap A_\alpha} = \bigcap\overline{A_\alpha}$
+    \item $\overline{A - B} = \bar{A}-\bar{B}$
+  \end{enumerate}
+
+\end{exercise}
+\begin{proof}[Solution]
+  (a)(b) Equality does not hold. For example, if $A = (0,1)$ and $B = (1,2)$, then $\overline{A\cap B} = \emptyset$, but $\overline{A}\cap\overline{B} = \{1\}$. We will instead show that $$\overline{\bigcap A_\alpha} \subseteq \bigcap\overline{A_\alpha}.$$
+  If $x\in \overline{\bigcap A_\alpha}$, then every neighborhood $U$ of $x$ intersects $\bigcap A_\alpha$, so it must intersect every $A_\alpha$ (this is where the converse fails). Therefore, we have $x\in\overline{A_\alpha}$ for all $\alpha$.
+
+  (c) If $A = [0,1]$ and $B = (0,1)$, then $\overline{A-B} = \{0,1\}$ and $\bar{A}-\bar{B} = \emptyset$, so equality doesn't hold. We will show that the $\supseteq$ direction holds though.
+
+  Assume $x\in \bar{A}-\bar{B}$. Then every neighborhood of $x$ intersects $A$, but at least one neighborhood $U$ of $x$ does not intersect $B$. Now fix any neighborhood $V$ of $x$. Then we have $U\cap V$ does not intersect $B$, which means $V$ intersects some point in $A-B$. Since $V$ was arbitrary, this means $x\in\overline{A-B}$.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $A\subseteq X$ and $B\subseteq Y$. Show that in the space $X\times Y$,
+  $$\overline{A\times B} = \bar{A}\times\bar{B}$$
+\end{exercise}
+\begin{proof}[Solution]
+  Suppose $x\times y\in \overline{A\times B}$. Then for all neighborhoods $U$ of $x$ and $V$ of $y$, we have $U\times V$ intersects $A\times B$. Therefore, $U$ intersects $A$ and $V$ intersects $B$, thus $x\in \bar{A}$ and $y\in\bar{B}$. All steps are reversible.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Show that every order topology is Hausdorff
+\end{exercise}
+\begin{proof}[Solution]
+  Let $X$ be equipped with an order topology. Let $a,b$ be distinct elements of $X$ and assume WLOG that $a < b$. If $b$ is the immediate successor of $a$, then the sets $(-\infty,b)$ and $(a,\infty)$ are disjoint and contain $a$ and $b$ respectively. Otherwise, choose $x$ such that $a < x < b$. Then we have $(-\infty,x)$ and $(x,\infty)$ are disjoint and contain $a$ and $b$.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Show that the product of two Hausdorff spaces is Hausdorff.
+\end{exercise}
+\begin{proof}[Solution]
+  Let $X$ and $Y$ be Hausdorff spaces, and pick two distinct points $(a,b)$ and $(c,d)$ in $X\times Y$. WLOG assume that $a\ne c$. Since $X$ is Hausdorff, we can pick disjoint neighborhoods $U,V\subseteq X$ containing $a$ and $c$. Then the neighborhoods $U\times Y$ and $V\times Y$ of $(a,b)$ and $(c,d)$ respectively are disjoint.
+
+  If $a = c$, then $b\ne d$ and we can use the fact that $Y$ is Hausdorff instead.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Show that a subspace of a Hausdorff space is Hausdorff.
+\end{exercise}
+\begin{proof}[Solution]
+  Let $X$ be a Hausdorff space and $Y\subseteq X$. Choose two distinct point $x,y\in Y$. Since $X$ is Hausdorff, choose disjoint open sets $U$ and $V$ containing $x$ and $y$ respectively. Then $x\in U\cap Y$ and $y\in V\cap Y$ are disjoint neighborhoods in $Y$, so $Y$ is Hausdorff.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Show that $X$ is Hausdorff if and only if $\Delta = \{x\times x\mid x\in X\}$ is closed in $X\times X$.
+\end{exercise}
+\begin{proof}[Solution]
+  Pick a point $(x,y)$ not on the diagonal. Then $x\ne y$, so since $X$ is Hausdorff, we can find disjoint neighborhoods $U$ and $V$ of $x$ and $y$. Then we have $(x,y)\in U\times V$ and $U\times V$ doesn't intersect $\Delta$, so $\Delta$ is closed. These steps work in reverse for the other direction.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  How does convergence of sequences work in $\mathbb{R}$ with the finite complement topology.
+\end{exercise}
+\begin{proof}[Solution]
+  If no term appears infinitely often, the sequence converges to every point. If a single term appears infinitely often, the sequence converges to that point. If multiple terms appear infinitely often, the sequence doesn't converge.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Show that the $T_1$ axiom is equivalent to the condition that for each pair of distinct points in $X$, each has a neighborhood not containing the other.
+\end{exercise}
+\begin{proof}[Solution]
+  Assuming the $T_1$ axiom is true, $X - \{y\}$ is a neighborhood of $x$ not containing $y$. For the converse, we only need to show that single point sets are closed. Let $a\in X$. If $b$ is a different point in $X$, there is a neighborhood of $b$ not containing $a$ by hypothesis. This immediately implies $\{a\}$ is closed.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Consider the following topologies on $\mathbb{R}$:
+  \begin{itemize}
+    \item[] $\mathcal{T}_1 = $ the standard topology
+    \item[] $\mathcal{T}_2 = \mathbb{R}_K$
+    \item[] $\mathcal{T}_3 = $ the finite complement topology
+    \item[] $\mathcal{T}_4 = $ the upper limit topology
+    \item[] $\mathcal{T}_5 = $ the topology having all sets $(-\infty, a)$ as a basis.
+  \end{itemize}
+  Determine the closure of $K = \{1/n\}_{n\in\mathbb{N}}$ for each topology. Which topologies are Hausdorff? Which satisfy the $T_1$ axiom?
+\end{exercise}
+\begin{proof}[Solution]
+  In $\mathcal{T}_1$, the closure of $K$ is $K\cup\{0\}$. $\mathcal{T}_1$ is Hausdorff.
+
+  In $\mathcal{T}_2$, the closure of $K$ is $K$. $\mathcal{T}_2$ is Hausdorff because $\mathcal{T}_2$ is finer than $\mathcal{T}_1$.
+
+  In $\mathcal{T}_3$, the closure of $K$ is $\mathbb{R}$. $\mathcal{T}_3$ is not Hausdorff, but does satisfy the $T_1$ axiom.
+
+  In $\mathcal{T}_4$, the closure of $K$ is $K$. $\mathcal{T}_4$ is Hausdorff.
+
+  In $\mathcal{T}_5$, the closure of $K$ is $[0,\infty)$. $\mathcal{T}_5$ doesn't satisfy the $T_1$ axiom.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Consider the lower limit topology on $\mathbb{R}$ and the topology given by the basis
+  $$\mathcal{C} = \{[q,r)\mid q,r\in\mathbb{Q}\}.$$
+  Determine the closures of $A = (0,\sqrt{2})$ and $B = (\sqrt{2},3)$ in each topology.
+\end{exercise}
+\begin{proof}[Solution]
+  In $\mathbb{R}_\ell$, we have $\bar{A} = [0,\sqrt{2})$ and $\bar{B} =[\sqrt{2},3)$.
+
+  In the topology generated by $\mathcal{C}$, we have $\bar{A} = [0,\sqrt{2}]$ and $\bar{B} = [\sqrt{2},3)$
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Determine the closures of the following subsets of the ordered square:
+  \begin{itemize}
+    \item[] $A = \{1/n\times 0\mid n\in\mathbb{N}\}$
+    \item[] $B = \{(1-1/n)\times 1/2\mid n\in\mathbb{N}\}$
+    \item[] $C = \{x\times 0\mid 0<x<1\}$
+    \item[] $D = \{x\times 1/2\mid 0<x<1\}$
+    \item[] $E = \{1/2\times y\mid 0<y<1\}$
+  \end{itemize}
+\end{exercise}
+\begin{proof}[Solution]
+  Here are the results:
+  \begin{itemize}
+    \item $\bar{A} = A\cup\{0\times 1\}$
+    \item $\bar{B} = B\cup\{1\times 0\}$
+    \item $\bar{C} = \{x\times 0\mid 0 < x\le 1\}\cup \{x\times 1\mid 0\le x < 1\}$
+    \item $\bar{D} = D\cup \bar{C}$
+    \item $\bar{E} = \{1/2\times y\mid 0\le y\le 1\}$
+  \end{itemize}
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  If $A\subseteq X$, we define the \textit{boundary} of $A$ by the equation $\Bd A = \overline{A}\cap\overline{X - A}$.
+  \begin{enumerate}[(a)]
+    \item Show that the boundary and interior are disjoint, and $\bar{A} = \Bd A \cup \Int A$.
+    \item Show that $\Bd A = \emptyset\iff A$ is open and closed.
+    \item Show that $U$ is open $\iff \Bd U = \bar{U} - U$.
+    \item If $U$ is open, is it true that $U = \Int\bar{U}$?
+  \end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+  (a) We have $x\in\Bd A$ if and only if every neighborhood of $x$ intersects both $A$ and $X - A$. On the other hand, $x\in\Int A$ if and only if there is some neighborhood of $x$ which lies completely in $A$. These can't happen at the same time, thus $\Bd A$ and $\Int A$ are disjoint. Also, either of these conditions occuring is equivalent to every neighborhood of $x$ intersecting with $A$, which means $\Bd A \cup \Int A = \bar{A}$.
+
+  (b) Just realize that $\Bd A = \bar{A} - \Int A$ and the rest is trivial.
+
+  (c) Again, a simple application of $\Bd A = \bar{A} - \Int A$.
+
+  (d) No, for instance $U = (0,1)\cup(1,2)$ and $\Int\bar{U} = (0,2)$.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Find the boundary and interior of these subsets of $\mathbb{R}^2$:
+  \begin{enumerate}[(a)]
+    \item $A = \{x\times y\mid y = 0\}$
+    \item $B = \{x\times y\mid x > 0\text{ and } y\ne 0\}$
+    \item $C = A\cup B$
+    \item $D = \{x\times y\mid x\in\mathbb{Q}\}$
+    \item $E = \{x\times y\mid 0 < x^2-y^2 \le 1\}$
+    \item $F = \{x\times y\mid x\ne 0\text{ and } y \le 1/x\}$
+  \end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+  \begin{enumerate}[(a)]
+    \item $\Bd A = A$ and $\Int A = \emptyset$.
+    \item $\Bd B = \{x\times y\mid x = 0\text{ or } x>0,y=0\}$ and $\Int B = B$.
+    \item $\Bd C = \{x\times y\mid x = 0\text{ or } x<0,y=0\}$ and $\Int C = \{x\times y\mid x > 0\}$.
+    \item $\Bd D = \mathbb{R}^2$ and $\Int D = \emptyset$.
+    \item $\Bd E = \{x\times y\mid x^2-y^2\in\{0,1\}\}$ and $\Int E = \{x\times y\mid 0 < x^2-y^2 < 1\}$
+    \item $\Bd F = \{x\times y\mid x = 0\text{ or } y = 1/x\}$ and $\Int F = \{x\times y\mid x\ne 0\text{ and } y < 1/x\}$.
+  \end{enumerate}
+\end{proof}
+
+\hrule
+
+\begin{exercise}[Kuratowski's Theorem]
+  Show that starting with a set $A\subseteq X$, 14 is the most number of unique sets can be reached by repeatedly applying closure and complement.
+\end{exercise}
+\begin{proof}[Solution]
+  Let $K$ denote closure and let $C$ denote complement. We have $KK = K$ and $CC = \mathrm{id}$, so every unique combination can be written by alternating $K$ and $C$.
+
+  First notice that $CKC$ is just the interior operator, which we will shorten to $I$. We need a lemma first.
+
+  \begin{lemma}
+    Suppose $K$ is a closed set, and for every open set $U$ intersecting $K$ we have $\Int(U\cap K)\ne\emptyset$. Then $\overline{\Int K} = K$.
+  \end{lemma}
+  \begin{proof}
+    Since $K$ is closed and includes it's interior, we have $\overline{\Int K}\subseteq K$.
+
+    Now assume $x\notin \overline{\Int K}$, so that there is some neighborhood $U$ of $x$ not intersecting $\Int K$. If $x\in K$, then clearly $U$ intersects $K$, so by hypothesis there is some $y\in\Int(U\cap K)$. But this implies $y\in \Int K$ and $y\in U$, which is a contradiction. Therefore, $x\notin K$, and so we have $K\subseteq\overline{\Int K}$
+  \end{proof}
+
+  I claim that $\overline{\Int A}$ is a closed set with the required property. If $U$ is an open set intersecting $\overline{\Int A}$, then it also intersects $\Int A$, so $U\cap\Int A\subseteq U\cap\overline{\Int A}$ is part of the interior.
+  
+  In particular, this means that $KIKI = KI$, which is the final reduction type we need. We can go up to $CKCKCKC$ or $CKCKCK$, and along with the starting set, this is 14 sets!
+
+  An example where 14 unique sets are achieved is $(0,1)\cup(1,2)\cup\{3\}\cup([4,5]\cap\mathbb{Q})$
+\end{proof}
+
+\hrule
+
+\end{document}
