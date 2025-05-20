@@ -1,0 +1,197 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\begin{document}
+\addtocounter{section}{17}
+\section{Continuous Functions}
+
+\begin{exercise}
+  Show that the $\varepsilon-\delta$ definition of continuity in $\mathbb{R}$ implies the open set definition 
+\end{exercise}
+\begin{proof}[Solution]
+  Let $f:\mathbb{R}\to\mathbb{R}$ satisfy the $\varepsilon-\delta$ definition of continuity, and let $V\subseteq \mathbb{R}$ be open. Fix $x\in f^{-1} (V)$, and choose $\varepsilon$ such that the interval $(f(x) - \varepsilon, f(x) + \varepsilon)$ is contained in $V$. Then there is some $\delta > 0$ such that
+  $$f((x - \delta, x + \delta))\subseteq (f(x) - \varepsilon, f(x) + \varepsilon) \subseteq V,$$
+  which implies that $(x - \delta, x + \delta)\subseteq f^{-1}(V)$. Since $x$ was arbitrary, $f^{-1}(V)$ is open.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Suppose that $f:X\to Y$ is continuous and $A\subseteq X$. If $x$ is a limit point of $A$, is $f(x)$ a limit point of $f(A)$?
+\end{exercise}
+\begin{proof}[Solution]
+  No, $f$ could be constant for example.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $X$ and $X'$ denote the same set in the topologies $\mathcal{T}$ and $\mathcal{T}'$ respectively. Let $i:X'\to X$ be the identity function.
+  \begin{enumerate}[(a)]
+    \item Show that $i$ is continuous $\iff \mathcal{T}'$ is finer than $\mathcal{T}$.
+    \item Show that $i$ is a homeomorphism $\iff \mathcal{T}' = \mathcal{T}$.
+  \end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+  (a) If $i$ is continuous and $U$ is open in $\mathcal{T}$, then $i^{-1}(U) = U$ is open in $\mathcal{T}'$. Conversely, if $\mathcal{T}'$ is finer than $\mathcal{T}$ and $U$ is open in $\mathcal{T}$, then $i^{-1}(U) = U$ is open in $\mathcal{T}'$.
+
+  (b) $i$ and $i^{-1}$ are both identity functions.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Given $y_0\in Y$, show that the map $f:X\to X\times Y$ defined by $f(x) = x\times y_0$ is an embedding.
+\end{exercise}
+\begin{proof}[Solution]
+  $f$ is clearly continuous, as it's the product of the identity function with a constant function. Also, it's clear that $f$ is injective with range $X\times\{y_0\}$.
+
+  If $U$ is open in $X$, then $f(U) = U\times \{y_0\}$ is open in $X\times\{y_0\}$, thus $f^{-1}$ is continuous. Therefore, $f$ is an imbedding.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Show that the subspace $(a,b)$ of $\mathbb{R}$ is homeomorphic with $(0,1)$, and the subspace $[a,b]$ is homeomorphic with $[0,1]$.
+\end{exercise}
+\begin{proof}[Solution]
+  Let $f:\mathbb{R}\to\mathbb{R}$ be defined as $f(x) = \frac{x-a}{b-a}$, which is continuous and has a continuous inverse. Then $f$ restricted to the domains $(a,b)$ or $[a,b]$ are both continuous and invertible, so we have the result.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Find a function $f:\mathbb{R}\to\mathbb{R}$ which is continuous at precisely one point.
+\end{exercise}
+\begin{proof}[Solution]
+  Define $f$ such that $$f(x) = \begin{cases}
+    x & x\in\mathbb{Q} \\
+    0 & x\notin\mathbb{Q}.
+  \end{cases}$$
+  $f$ is only continuous at $x = 0$.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Suppose that $f:\mathbb{R}\to\mathbb{R}$ is continuous from the right, that is,
+  $$\lim_{x\to a^+} f(x) = f(a)$$
+  for each $a\in\mathbb{R}$. Show that $f$ is continuous when considered as a function from $\mathbb{R}\to\mathbb{R}_\ell$.
+\end{exercise}
+\begin{proof}[Solution]
+  Let $[a,b)$ be an open basis set of $\mathbb{R}_\ell$, and let $x_0\in f^{-1}([a,b))$. Choose some $\varepsilon > 0$ such that $[f(x_0),f(x_0)+\varepsilon)\subseteq [a,b)$. Then there is some $\delta > 0$ such that
+  $$f((x-\delta, x+\delta)) \subseteq [f(x_0),f(x_0) + \epsilon) \subseteq [a,b).$$
+  Then $(x-\delta, x+\delta) \in f^{-1}([a,b))$, therefore $f^{-1}([a,b))$ is open and $f:\mathbb{R}\to\mathbb{R}_\ell$ is continuous.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $Y$ be an ordered set in the order topology. Let $f,g:X\to Y$ be continuous.
+  \begin{enumerate}[(a)]
+    \item Show that $\{x\mid f(x)\le g(x)\}$ is closed in $X$.
+    \item Show that $h(x) = \min(f(x), g(x))$ is continuous.
+  \end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+  (a) Suppose that $x$ is chosen so that $f(x) > g(x)$. We must find a neighborhood of $x$ who's points also satisfy this inequality. Since order topologies are Hausdorff, we can choose two disjoint intervals such that $f(x)\in (a,b)$ and $g(x)\in (c,d)$. Then $f^{-1}(a,b) \cap g^{-1}(c,d)$ is open, contains $x$, and all points $z$ in this set satisfy $f(z) > g(z)$. Therefore, the complement set $\{x\mid f(x) \le g(x)\}$ is closed.
+
+  (b) We have
+  $$h(x) = \begin{cases}
+    f(x) & f(x)\le g(x) \\
+    g(x) & g(x)\le f(x)
+  \end{cases}$$
+  Since the domains in both cases are closed by (a), $h$ is continuous by the pasting lemma.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $\{A_\alpha\}$ be a collection of subsets of $X$; let $X = \bigcup A_\alpha$. Let $f:X\to Y$; suppose $f|_{A_\alpha}$ is continuous for each $\alpha$.
+  \begin{enumerate}[(a)]
+    \item If $\{A_\alpha\}$ is finite and each $A_\alpha$ is closed, then $f$ is continuous.
+    \item Find an example where the collection $\{A_\alpha\}$ is countable and each $A_\alpha$ is closed, but $f$ is not continuous.
+    \item $\{A_\alpha\}$ is said to be locally finite if each $x\in X$ has a neighborhood that intersects only finitely many $A_\alpha$. Show that if $\{A_\alpha\}$ is locally finite and each $A_\alpha$ is closed, then $f$ is continuous.
+  \end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+  (a) This is true by induction and the pasting lemma.
+  
+  (b) Define $A_0 = \{0\}$ and $A_n = [1/(n+1),1/n]$ for each $n\in\mathbb{N}$. The union is $[0,1]$. Define $f:[0,1]\to\mathbb{R}$ so that $f(x)$ is $1$ if $x = 0$, and $0$ otherwise. Then $f$ is not continuous, but it is continuous when restricted to each $A_n$.
+
+  The key here was to choose the $A_n$ so that some of the closed sets have a nonclosed union, and then have another set include the limit point.
+
+  (c) We will show that the arbitrary union of a locally finite collection of closed sets $\{A_\alpha\}$ is closed. Suppose that $x\notin \bigcup A_\alpha$. By local finiteness, there is some neighborhood $U$ containing $x$ which intersects only finitely many $A_\alpha$; call these intersections $A_1,\dots,A_n$. The union of these finitely many closed sets is closed, so there is a neighborhood $V$ of $x$ which intersects none of them. Now $U\cap V$ is a neighborhood of $x$ disjoint from $\bigcup A_\alpha$, thus the union is closed.
+
+  Following the proof of the pasting lemma, for each closed set $C$ we have
+  $$f^{-1}(C) = \bigcup(f|_{A_\alpha})^{-1}(C),$$
+  which is the union of locally finite closed sets, and thus closed.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $f:A\to B$ and $g:C\to D$ be continuous functions. Let us define a map $f\times g:A\times C\to B\times D$ by the equation
+  $$(f\times g)(a\times c) = (f(a)\times g(c)).$$
+  Show that $f\times g$ is continuous.
+\end{exercise}
+\begin{proof}[Solution]
+  Let $U\times V\subseteq B\times D$ be open. Then we have
+  \begin{align*}
+    (f\times g)^{-1}(U\times V) &= \{a\times c\mid f(a)\in U\text{ and }g(c)\in V\} \\
+    &= f^{-1}(U)\times g^{-1}(V),
+  \end{align*}
+  which is open because $f$ and $g$ are continuous.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $F:X\times Y\to Z$. We say that $F$ is continuous in each variable separately if, for each $y_0\in Y$, the map $h:X\to Z$ defined by $h(x) = F(x,y_0)$ is continuous, and similarly with the other variable.
+  Show that if $F$ is continuous, then it's continuous in each variable separately.
+\end{exercise}
+\begin{proof}[Solution]
+  Fix $y_0\in Y$, and define $h(x) = F(x,y_0)$. Let $U$ be an open set in $Z$. Then
+  $$h^{-1}(U) = \{x\in X\mid F(x,y_0) \in U\}$$
+  Let $x\in h^{-1}(U)$, so that $F(x,y_0)\in U$. Then we have $(x,y_0)\in F^{-1}(U)$. Since $F$ is continuous, let $A\times B$ be a neighborhood of $(x,y_0)$ contained in $F^{-1}(U)$. Then
+  \begin{align*}
+    h(A) &= F(A,y_0)\subseteq F(A\times B)\subseteq U \\
+    A &\subseteq h^{-1}(U),
+  \end{align*}
+  so $h^{-1}(U)$ is open and $h$ is continuous.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $F:\mathbb{R}\times\mathbb{R}\to\mathbb{R}$ be defined by the equation
+  $$F(x,y) = \begin{cases}
+    xy/(x^2+y^2) & \text{if $(x,y)\ne (0,0)$} \\
+    0 & \text{if $(x,y) = (0,0)$}.
+  \end{cases}$$
+  Show that $f$ is continuous in each variable, but not continuous.
+\end{exercise}
+\begin{proof}[Solution]
+  Fix $y_0\in \mathbb{R}$. We have $F(x,0) = 0$ for all $x$, so let's assume $y_0\ne 0$. Then $$h(x) = F(x,y_0) = \frac{xy_0}{x^2+y_0^2},$$
+  which is continuous by real analysis.
+
+  Now consider the function $h(x) = F(x,x)$. We have $h(0) = 0$, but $h(x) = 1/2$ for any nonzero $x$, so $h$ is not continuous at $x=0$. Since $\delta:x\mapsto (x,x)$ is continuous and $h = F\circ\delta$, $F$ cannot be continuous.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $A\subseteq X$; let $f:A\to Y$ be continuous; let $Y$ be Hausdorff. Show that if $f$ may be extended to a continuous function $g:\overline{A}\to Y$, then $g$ is uniquely determined by $f$.
+\end{exercise}
+\begin{proof}[Solution]
+  Suppose there existed two continuous extensions $g_1,g_2:\overline{A}\to Y$, and let $x$ be any point in $\overline{A}-A$. Assume for a contradiction that $g_1(x) \ne g_2(x)$. Then because $Y$ is Hausdorff, we can choose disjoint open sets $U,V\subseteq Y$ such that $g_1(x)\in U$ and $g_2(x)\in V$. We have
+  $$x\in g_1^{-1}(U)\cap g_2^{-1}(V),$$
+  so this intersection is open and nonempty, thus it intersects $A$. Choosing $a$ so that $$a\in A\cap g_1^{-1}(U)\cap g_2^{-1}(V),$$
+  we have $g_1(a) = g_2(a) = f(a)\in U\cap V$, contradicting that $U$ and $V$ are disjoint. Therefore, $g_1 = g_2$.
+\end{proof}
+
+\hrule
+
+\end{document}
