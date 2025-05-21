@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\begin{document}
+\addtocounter{section}{18}
+\section{The Product Space}
+
+\begin{exercise}
+  Suppose the topology on each space $X_\alpha$ is given a basis $\mathcal{B}_\alpha$. The collection of all sets $$\prod_{\alpha\in J} B_\alpha,$$
+  where $B_\alpha\in\mathcal{B}_\alpha$ for each $\alpha$, is a basis for the box topology.
+
+  The collection of sets of the same form, where $B_\alpha\in\mathcal{B}_\alpha$ for finitely many $\alpha$ and $B_\alpha = X_\alpha$ for the remaining indices, is a basis of the product topology.
+\end{exercise}
+\begin{proof}[Solution]
+  Let $\prod U_\alpha$ be a basis element of the box topology. Then for each $(x_\alpha)_{\alpha\in J}\in\prod U_\alpha$, there are basis elements $B_\alpha\in\mathcal{B}_\alpha$ such that $x_\alpha\in B_\alpha\subseteq U_\alpha$ for each $\alpha$. Thus,
+  $$(x_\alpha)_{\alpha\in J}\in\prod B_\alpha \subseteq\prod U_\alpha,$$
+  which shows that these products of basis elements form a basis for the box topology.
+
+  A similar argument applies with the product topology.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $A_\alpha$ be a subspace of $X_\alpha$ for each $\alpha$. Then $\prod A_\alpha$ is a subspace of $\prod X_\alpha$ in either the box or product topologies.
+\end{exercise}
+\begin{proof}[Solution]
+  Suppose $\prod U_\alpha$ is a basis element of $\prod A_\alpha$ in the box topology. We can write
+  $$\prod U_\alpha = \prod (A_\alpha\cap V_\alpha) = \prod A_\alpha \cap \prod V_\alpha,$$
+  where each $V_\alpha$ is open in $X_\alpha$. This is just $\prod A_\alpha$ intersected with some basis element of $\prod X_\alpha$, so the subspace relationship holds. A similar argument applies with the product topology.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  If each $X_\alpha$ is a Hausdorff space, then $\prod X_\alpha$ is Hausdorff in both the product and box topologies.
+\end{exercise}
+\begin{proof}[Solution]
+  Since the box topology is finer than the product topology, it suffices to only consider the product topology.
+
+  Suppose $(x_\alpha)_{\alpha\in J}$ and $(y_\alpha)_{\alpha\in J}$ are distinct points in $\prod X_\alpha$. Then there is some $\kappa\in J$ such that $x_\kappa\ne y_\kappa$. Since $X_\kappa$ is Hausdorff, we can choose nonintersecting neighborhoods $U$ and $V$ contain $x_\kappa$ and $y_\kappa$ respectively. Then
+  $$(x_\alpha)_{\alpha\in J}\in \pi_\kappa^{-1}(U)\qquad\text{and}\qquad (y_\alpha)_{\alpha\in J}\in \pi_\kappa^{-1}(V),$$
+  and the inverse images are disjoint neighborhoods, thus the product space is Hausdorff.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Show that $(X_1\times\dots\times X_{n-1})\times X_n$ is homeomorphic to \\ $X_1\times \dots\times X_n$.
+\end{exercise}
+\begin{proof}[Solution]
+  Let $f((x_1,\dots,x_{n-1}),x_n) = (x_1,\dots,x_n)$ be our candidate for a homeomorphism. If $U = U_1\times\dots\times U_n$ is open in the codomain, then
+  $$f^{-1}(U) = (U_1\times\dots\times U_{n-1})\times U_n,$$
+  which is open in the domain. Conversely, if $U = (U_1\times\dots\times U_{n-1})\times U_n$ is open in the domain, then
+  $$f(U) = U_1\times\dots\times U_n$$
+  is open in the codomain. Therefore, $f$ is a homeomorphism.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  One of the implications in Theorem 19.6 holds for the box topology. Which is it?
+\end{exercise}
+\begin{proof}[Solution]
+  Firstly, it's easy to check that projections are continuous in the box topology.
+  Therefore, if $f:A\to\prod X_\alpha$ is continuous, then each composition $\pi_\alpha \circ f$ is continuous.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $x_1,x_2,\dots$ be a sequence of points in the product space $\prod X_\alpha$. Show that this sequence converges to the point $x$ if and only if the sequence $\pi_\alpha(x_1),\pi_\alpha(x_2),\dots$ converges to $\pi_\alpha(x)$ for each $\alpha$. Is this fact true if one uses the box topology?
+\end{exercise}
+\begin{proof}[Solution]
+  Suppose that $x_1,x_2,\dots$ converges to $x$, and fix an index $\beta$. Let $V\subseteq X_\alpha$ be a neighborhood of $\pi_\alpha(x)$. Then since $\pi_\alpha$ is continuous, we have $\pi_\alpha^{-1}(V)$ is a neighborhood of $x$, and thus contains almost every $x_n$. This means that $\pi_\alpha(x_n)\in V$ for almost all $n$, so that $\pi_\alpha(x_1),\pi_\alpha(x_2),\dots$ converges to $\pi_\alpha(x)$. This part works fine in the box topology.
+
+  Conversely, suppose that $\pi_\alpha(x_1),\pi_\alpha(x_2),\dots$ converges to $\pi_\alpha(x)$ for each $\alpha$. Let $\prod U_\alpha$ be a basis element of $\prod X_\alpha$ containing $x$. In the \textbf{product} topology, we have $U_\alpha = X_\alpha$ for all but finitely $\alpha$. Now the set of $n$ such that $x_n\notin U$ is
+  $$\bigcup\{n\mid \pi_\alpha(x_n)\notin U_\alpha\},$$
+  which is the finite union of finite sets, and thus finite. So in the product topology, $(x_n)\to x$.
+  
+  In the box topology, the union may not be finite, so this argument doesn't work. A counterexample is the set $X = \mathbb{R}^\omega$ in the box topology, and $x_n = (1/n,1/n,\dots)$. We have $(\pi_\alpha(x_n))\to 0$ for each $\alpha$, but the open set\\ $\prod(-1/n,1/n)$ actually contains no $x_n$!
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $\mathbb{R}^\infty$ be the subset of $\mathbb{R}^\omega$ who's sequences are those with only finitely many nonzero terms. What is the closure of $\mathbb{R}^\infty$ in the product and box topologies?
+\end{exercise}
+\begin{proof}[Solution]
+  I claim that $\mathbb{R}^\infty$ is closed in the box topology. If a sequence $x_n$ has infinitely many nonzero terms, we can construct open sets around these terms in $\mathbb{R}$ which all exclude 0. Any sequence within these open sets must then have infinitely many nonzero terms, and thus is not in $\mathbb{R}^\infty$.
+
+  On the other hand, I claim that the closure of $\mathbb{R}^\infty$ is $\mathbb{R}^\omega$ in the product topology. Then if $x_n$ is a sequence, when we construct open sets around each term, almost all of them must be all of $\mathbb{R}$ and contain $0$. We can therefore create a new sequence $y_n$ which is zero almost everywhere and intersects the neighborhood of $x_n$.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Given sequences $(a_1,a_2,\dots)$ and $(b_1,b_2,\dots)$ of real numbers with $a_i > 0$ for all $i$,
+  define $h:\mathbb{R}^\omega\to\mathbb{R}^\omega$ by the equation
+  $$h(x_1,x_2,\dots) = (a_1x_1+b_1,a_2x_2+b_2,\dots).$$
+  Show that $h$ is a homeomorphism in the product topology. What about the box topology?
+\end{exercise}
+\begin{proof}[Solution]
+  Let $h_i(x) = a_ix + b_i$ for each $i$. In the product topology, we have $h$ is continuous if and only if each $\pi_i\circ h$ is continuous. But we have
+  $$\pi_i\circ h = h_i\circ\pi_i,$$
+  and both $h_i$ and $\pi_i$ are continuous, therefore $h$ is continuous in the product topology.
+
+  In the box topology, let $U = U_1\times U_2\times\dots$ be a basis element. Then we have
+  $$h^{-1}(U) = h_1^{-1}(U_1)\times h_2^{-1}(U_2)\times\dots,$$
+  which is also open, so $h$ is continuous in the box topology.
+
+  Similarly, $h^{-1}$ has the same form and is continuous in the product and box topologies, thus $h$ is a homeomorphism in both topologies. In fact, we only need each $h_i$ to be a homeomorphism for this to work.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Show that the choice axiom is equivalent to the statement that for each family $\{A_\alpha\}_{\alpha\in J}$ of nonempty sets, with $J\ne\emptyset$, the cartesian product
+  $$\prod_{\alpha\in J} A_\alpha$$
+  is nonempty.
+\end{exercise}
+\begin{proof}[Solution]
+  Suppose the axiom of choice is true, and let $\{A_\alpha\}$ be a collection of sets. Then the collection $\{A'_\alpha\} = \{\{\alpha\}\times A_\alpha\}_{\alpha\in J}$ is pairwise disjoint, so by the axiom of choice, choose $C$ containing one element of each $A'_\alpha$. Then $C$ is actually a function $J\to\bigcup A_\alpha$ such that $C(\alpha)\in A_\alpha$ for each $\alpha$. In other words, $C$ is an element of the product.
+
+  Conversely, suppose that products are nonempty, and let $\{A_\alpha\}_{\alpha\in J}$ be a collection of disjoint sets. Choose some $f\in\prod_{\alpha\in J}A_\alpha$. Define $C$ by the equation
+  $$C = \{f(\alpha)\mid \alpha\in J\}.$$
+  This set satisfies the requirements for the axiom of choice.
+\end{proof}
+
+\hrule
+
+\begin{exercise}
+  Let $A$ be a set; let $\{X_\alpha\}_{\alpha\in J}$ be an indexed family of spaces; and let $\{f_\alpha\}_{\alpha\in J}$ be an indexed family of functions $f_\alpha:A\to X_\alpha$.
+  \begin{enumerate}[(a)]
+    \item Show that there is a unique coarsest topology $\mathcal{T}$ on $A$ relative to which each of the functions $f_\alpha$ is continuous.
+    \item Redundant
+    \item Show that a map $g:Y\to A$ is continuous relative to $\mathcal{T}$ if and only if each map $f_\alpha\circ g$ is continuous.
+    \item Let $f:A\to\prod X_\alpha$ be defined by the equation $$f(a) = (f_\alpha(a))_{\alpha\in J};$$
+    let $Z$ denote the subspace $f(A)$ of the product space $X_\alpha$. Show that the image under $f$ of each set in $\mathcal{T}$ is open in $Z$.
+  \end{enumerate}
+\end{exercise}
+\begin{proof}[Solution]
+  (a,b) Define $\mathcal{T}$ by the subbasis
+  $$\{f_\alpha^{-1}(U)\mid \alpha\in J\text{ and $U$ open in $X_\alpha$}\}.$$
+
+  (c) Suppose that $g:Y\to A$ and each map $f_\alpha\circ g$ is continuous. Let $f_\alpha^{-1}(U)$ be a subbasis element of $\mathcal{T}$. Then
+  $$g^{-1}(f_\alpha^{-1}(U)) = (f_\alpha\circ g)^{-1}(U),$$
+  which is also open, thus $g$ is continuous.
+
+  (d) Let $U$ be open in $A$, and let $\mathbf{x}\in f(U)$, so that we can choose $a\in U$ where $\mathbf{x} = f(a)$. Using the basis of $\mathcal{T}$ derived from the subbasis, there is a basis set $W$ such that
+  $$a\in W = \bigcap_{k=1}^n f_{\alpha_k}^{-1}(V_k)\subseteq U$$
+  for some indices $\alpha_1,\dots,\alpha_n$ and some open sets $V_1,\dots,V_n$. Then we have
+  $$\mathbf{x}\in\bigcap (Z\cap V_k) = \bigcap f(f_{\alpha_k}^{-1}(V_k))
+    \subseteq f(W) \subseteq f(U),$$
+  which shows that $f(U)$ is open because the finite intersection $\bigcap (Z\cap V_k)$ is open and contained in $f(U)$.
+\end{proof}
+
+\hrule
+
+\end{document}
