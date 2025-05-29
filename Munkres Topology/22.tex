@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\begin{document}
+\addtocounter{section}{21}
+\section{Quotient Topology}
+
+\begin{exercise}
+  Let $p$ be the map from $\mathbb{R}$ to the 3 point set $A = \{a,b,c\}$ defined by
+  $$p(x) = \begin{cases}
+    a & x > 0 \\
+    b & x < 0 \\
+    c & x = 0.
+  \end{cases}$$
+  The quotient topology on $A$ induced by $p$ is $\{\emptyset, \{a\}, \{b\}, \{a,b\}, \{a,b,c\}\}$.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Just check whether the inverse image of each subset of $A$ is open in $\mathbb{R}$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+    \item Let $p:X\to Y$ be a continuous map. Show that if there is a continuous map $f:Y\to X$ such that $p\circ f$ equals the identity map of $Y$, then $p$ is a quotient map.
+    \item If $A\subseteq X$, a retraction of $X$ onto $A$ is a continuous map $r:X\to A$ such that $r(a) = a$ for each $a\in A$. Show that a retraction is a quotient map.
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) Suppose $U$ is a subset of $Y$ and that $p^{-1}(U)$ is open. Then we have
+  $$U = (p\circ f)^{-1}(U) = f^{-1}(p^{-1}(U)),$$
+  which is open because $f$ is continuous.
+
+  (b) Let $U$ be a subset of $A$ such that $r^{-1}(U)$ is open. Then $r^{-1}(U)\cap A$ is open in $A$ by definition. But by the retraction property, $r^{-1}(U)\cap A = U$, so $U$ must be open.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $\pi_1:\mathbb{R}\times \mathbb{R}\to\mathbb{R}$ be projection onto the first coordinate. Let $A$ be the subspace of $\mathbb{R}\times\mathbb{R}$ consisting of all points $x\times y$ for which $x\ge 0$ or $y = 0$; let $q:A\to\mathbb{R}$ be obtained by restricting $\pi_1$. Show that $q$ is a quotient map and is neither open nor closed.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  $q$ is a quotient map because $A$ is closed. We have
+  \begin{align*}
+    f(A\cap(\mathbb{R}\times (0,\infty))) &= [0,\infty) \\
+    f(\{(1/n,n)\mid n\in\mathbb{N}\}) &= \{1/n\mid n\in\mathbb{N}\}
+  \end{align*}
+\end{proof}
+
+\pagebreak
+
+% \begin{exercise}
+%   Define an equivalence relation on the plane $X = \mathbb{R}^2$ as follows:
+%   $$x_0 \times y_0\sim x_1\times y_1 \iff x_0+y_0^2 = x_1+y_1^2.$$
+%   Let $X^*$ be the corresponding quotient space. It is homeomorphic to a familiar space; what is it?
+% \end{exercise}
+% \hrule
+% \begin{proof}[Solution]
+%   Let $g(x\times y) = x+y^2$. Then we have $$X^* = \{g^{-1}(\{z\})\mid z\in\mathbb{R}\},$$
+%   so applying Corollary 22.3, we have $f:X^*\to\mathbb{R}$ is bijective and continuous.
+% \end{proof}
+
+% \pagebreak
+
+\end{document}
