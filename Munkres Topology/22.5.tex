@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{exercise'}{Exercise}
+
+\begin{document}
+\addtocounter{section}{21}
+\section*{*Supplementary Exercises: Topological Groups}
+
+A topological group $G$ is a group that is also a topological space satisfying the $T_1$ axiom, such that the group operation $G\times G\to G$ and the inverse $G\to G$ are continuous.
+
+\begin{exercise'}
+  Let $H$ denote a group that is also a topological space satisfying the $T_1$ axiom. Show that $H$ is a topological group if and only if the map $x\times y\mapsto x\cdot y^{-1}$ is continuous.
+\end{exercise'}
+\hrule
+\begin{proof}[Solution]
+  Suppose the map $f(x\times y) = x\cdot y^{-1}$ is continuous. Then $f$ is continuous with respect to each variable, so the map $g(y) = f(1,y) = y^{-1}$ is also continuous and is the inverse operation. Then since $x\times y\mapsto x\times y^{-1}$ is continuous, we have
+  $$p(x\times y) = f(x\times y^{-1}) = x\cdot y$$
+  is continuous.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise'}
+  Show that $(\mathbb{Z},+)$, $(\mathbb{R},+)$, $(\mathbb{R}_+, \cdot)$, $(S^1,\cdot)$, and $\mathrm{GL}(n)$ are topological groups.
+\end{exercise'}
+\hrule
+\begin{proof}[Solution]
+  Subgroups of topological groups are topological groups, so we can skip $(\mathbb{Z},+)$. We know $\mathbb{R}$ satisfies the $T_1$ axiom and that addition and negation are continuous, so $(\mathbb{R},+)$ is a topological group.
+
+  The space $\mathbb{C}\setminus\{0\}$ satisfies the $T_1$ axiom and both multiplication and inverses are continuous, so $(\mathbb{C}^\times, \cdot)$ is a topological group, and so are it's subspaces $(\mathbb{R}_+,\cdot)$ and $(S^1,\cdot)$.
+
+  Multiplication of matrices seems complicated, but every component is just a combination of addition and multiplication in $\mathbb{R}$, so the entire multiplication is continuous. The same goes for inverses.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise'}
+  Let $H$ be a subspace and subgroup of $G$. Show that both $H$ and $\bar{H}$ are topological groups.
+\end{exercise'}
+\hrule
+\begin{proof}[Solution]
+  Subspaces preserve the $T_1$ axiom and continuity, so $H$ is a topological group.
+
+  All we need to show is that $\bar{H}$ is closed under the operation of $G$, in other words $f(\bar{H}\times\bar{H}) \subseteq\bar{H}$. Indeed, we have
+  $$f(\bar{H}\times\bar{H}) = f(\overline{H\times H}) \subseteq \overline{f(H\times H)} \subseteq \bar{H}$$
+  by continuity of $f$ and Theorem 18.1.
+\end{proof}
+
+\pagebreak
+
+\end{document}
