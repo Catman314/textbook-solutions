@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\begin{document}
+\addtocounter{section}{22}
+\section{Connected Spaces}
+
+\begin{exercise}
+  Let $\mathcal{T}$ and $\mathcal{T}'$ be two topologies on $X$. If $\mathcal{T}'\supseteq\mathcal{T}$, what does connectedness in one topology imply about connectedness in the other?
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  The statement of $X$ being connected is a universal quantifier over open sets, which means that if $X$ is connected in $\mathcal{T}'$ and $\mathcal{T}'\supseteq\mathcal{T}$, then $X$ is also connected in $\mathcal{T}$.
+
+  This applies for any statement which is a universal quantifier like this. If it were an existential quantifier, then the converse would hold instead. If it were a mix, then we can't use this method.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $A_n$ be a sequence of connected subspaces of $X$ such that $A_n\cap A_{n+1}$ is nonempty for each $n$. Show that $\bigcup A_n$ is connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Let $B_n = \bigcup_{k=1}^{n} A_k$. Each individual $B_n$ is connected by an inductive argument, so we have
+  $$\bigcup A_n = \bigcup B_n$$
+  is connected since all of the $B_n$ have some $a\in A_1$ in common.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $\{A_\alpha\}$ be a collection of connected subspaces of $X$; let $A$ be a connected subspace of $X$. Show that if $A\cap A_\alpha\ne\emptyset$ for all $\alpha$, then $A\cup \bigcup A_\alpha$ is connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Suppose $A\cup \bigcup A_\alpha$ is separated as $U\cup V$. Assume WLOG that $A\subseteq U$. Then each $A_\alpha$ intersects $U$, so each $A_\alpha$ is contained in $U$. Therefore, $A\cup\bigcup A_\alpha\subseteq U$, contradicting the assumption that $V$ is empty.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Show that if $X$ is an infinite set, it is connected in the finite complement topology.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Suppose that $X = U\cup V$ is a separation of $X$. Then
+  $$U\cap V = X - (X-U)\cup (X-V)$$
+  is infinite, so clearly $U$ and $V$ aren't disjoint.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  A space is \textbf{totally disconnected} if it's only connected subspaces are one-point sets. Show that if $X$ has the discrete topology, then $X$ is totally disconnected. Does the converse hold?
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Suppose $X$ has the discrete topology; let $A\subseteq X$ have two points $a,b\in A$. Then the partition $A = \{a\}\cup (A-\{a\})$ is a separation of $A$. Therefore, $X$ is totally disconnected.
+
+  Example 4 shows that $\mathbb{Q}$ is totally disconnected, so the converse doesn't hold.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $A\subseteq X$. Show that if $C$ is a connected subspace of $X$ that intersects both $A$ and $X-A$, then $C$ intersects $\mathrm{Bd}(A)$.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  If $C$ didn't intersect $\mathrm{Bd}(A)$, we could write
+  $$C = (C\cap\mathrm{Int}(A))\cup (C\cap\mathrm{Int}(X-A)),$$
+  which is a separation of $C$, contradicting that $C$ is connected.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Is the space $\mathbb{R}_\ell$ connected?
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  No, it is totally disconnected in fact. We have $\mathbb{R} = (-\infty,x)\cup[x,\infty)$ for all $x\in\mathbb{R}$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Determine whether or not $\mathbb{R}^\omega$ is connected in the uniform topology.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  We can actually just use the same proof as with the box topology, separating $\mathbb{R}^\omega$ into bounded and unbounded sequences.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $A$ be a proper subset of $X$ and let $B$ be a proper subset of $Y$. If $X\times Y$ is connected, show that
+  $$(X\times Y) - (A\times B)$$
+  is connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  It helps to visualize this. Let $C(x\times y) = (X\times\{y\})\cup(\{x\}\times Y)$ be the "plus shape" centered at $x\times y$. Each of these individually is connected. Furthermore, we have
+  $$(X \times Y) - (A\times B) = \bigcup_{x\in X-A}\bigcup_{y\in Y-B}C(x\times y),$$
+  and each union has at least one common point, so the entire thing is connected.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $\{X_\alpha\}_{\alpha\in J}$ be an indexed family of connected spaces; let $X = \prod X_\alpha$. Let $a = (a_\alpha)$ be a fixed point.
+  \begin{enumerate}[(a)]
+    \item Given any finite subset $K\subseteq J$, let $X_K$ denote the subspace of $X$ consisting of all points $x = (x_\alpha)$ such that $x_\alpha = a_\alpha$ for each $\alpha\notin K$. Show that $X_K$ is connected.
+    \item Show that the union $Y$ of all $X_K$ is connected.
+    \item Show that $X = \overline{Y}$, so that $X$ is connected.
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) $X_K$ is homeomorphic to a finite product, thus it is connected.
+  
+  (b) All $X_K$ have the common point $a$, so $Y = \bigcup X_K$ is connected.
+
+  (c) Let $b = (b_\alpha)$ be any point, and let $\prod U_\alpha$ be a neighborhood of $(b_\alpha)$, where $U_\alpha = X_\alpha$ for all but finitely many $\alpha$.
+  Let $K$ denote the finitely many indices where $U_\alpha\ne X_\alpha$. Then the sequence
+  $$c_\alpha = \begin{cases}
+    b_\alpha & \alpha\in K \\
+    a_\alpha & \alpha\notin K
+  \end{cases}$$
+  is in both $U$ and $X_K$, thus $b$ is in the closure of $Y$. Since $b$ was arbitrary, we have $\bar{Y} = X$, which is connected because $Y$ is connected.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $p:X\to Y$ be a quotient map. Show that if each set $p^{-1}(\{y\})$ is connected, and if $Y$ is connected, then $X$ is connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Suppose $X = U\cup V$ is a separation. Then each $p^{-1}(\{y\})$ must lie within either $U$ or $V$, thus $U$ and $V$ are saturated. But this implies $p(U)$ and $p(V)$ form a separation of $Y$, which contradicts that $Y$ is connected.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $Y\subseteq X$; let $X$ and $Y$ be connected. Show that if $A$ and $B$ form a separation of $X - Y$, then $Y\cup A$ and $Y\cup B$ are connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  It REALLY helps to draw this.
+
+  By the symmetry of the problem, we only need to show that $Y\cup A$ is connected.
+
+  Suppose that $Y\cup A$ was separated as $U\cup V$, where WLOG we assume that $Y\subseteq U$. Note that this implies $V \subseteq A$. We will show that $V$ is open and closed in $X$.
+
+  Since $V\subseteq A$, we have
+  $$V\text{ open in } Y\cup A \implies V\text{ open in } A \implies V\text{ open in } X.$$
+  A similar argument applies to show that $V$ is closed in $X$, thus $V$ and $X - V$ form a separation of $X$.
+\end{proof}
+
+\pagebreak
+
+\end{document}
