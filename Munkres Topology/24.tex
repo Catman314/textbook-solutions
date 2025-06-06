@@ -1,0 +1,207 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\begin{document}
+\addtocounter{section}{23}
+\section{Connected Subspaces of the Real Line}
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+    \item Show that no two of the spaces $(0,1),(0,1],[0,1]$ are homeomorphic.
+    \item Suppose that there exists imbeddings $f:X\to Y$ and $g:Y\to X$. Show by means of an example that $X$ and $Y$ need not be homeomorphic.
+    \item Show $\mathbb{R}^n$ and $\mathbb{R}$ are not homeomorphic if $n > 1$.
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) Following the hint, consider what happens when you remove a point from each space.
+  \begin{itemize}
+    \item $(0,1)\setminus\{x\}$ is always disconnected.
+    \item $(0,1]\setminus\{x\}$ is connected if and only if $x = 1$.
+    \item $[0,1]\setminus\{x\}$ is connected if and only if $x = 0$ or $x = 1$.
+  \end{itemize}
+  The number of points which yield a connected space once removed is invariant under homeomorphic spaces, thus all three intervals are nonhomeomorphic.
+
+  (b) The example they are heavily implying is that any two of the intervals in (a) can be imbedded in one another.
+
+  (c) As was shown in the examples, removing a single point from $\mathbb{R}^n$ yields a connected space for $n > 1$. This is not true for $n = 1$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $f:S^1\to\mathbb{R}$ be continuous. Show that there exists a point $x$ of $S^1$ such that $f(x) = f(-x)$.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Fix any $a$ such that $f(a) \le f(-a)$. Then we have $f(a) - f(-a) \le 0$ and $f(-a) - f(a) \ge 0$. Since $S^1$ is connected, by the intermediate value theorem there is some $x$ such that $f(x) - f(-x) = 0$, or $f(x) = f(-x)$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $f:X\to X$ be continuous. Show that if $X = [0,1]$, there is a point $x$ such that $f(x) = x$. The point $x$ is called a fixed point of $f$. What happens if $X$ is $[0,1)$ or $(0,1)$?
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  We have $g(x) = x - f(x)$ is continuous, and $g(0) \le 0$ and $g(1) \ge 0$, thus there is some point $x\in[0,1]$ such that $g(x) = 0$, which is the same as $f(x) = x$.
+
+  If $X = [0,1)$, the function $f(x) = \frac{x+1}{2}$ has no fixed point (the fixed point would be $1$). The same applies with $X = (0,1)$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $X$ be an ordered set in the order topology. Show that if $X$ is connected, then $X$ is a linear continuum.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  If there were points $x < y$ with no point between them, then the open intervals $(-\infty, y)$ and $(x,\infty)$ form a separation of $X$.
+
+  Suppose that some bounded set $S$ has no least upper bound, then let $B$ be the nonempty set of upper bounds.
+  If $x\in B$, there is some $y < x$ such that $y\in B$, so the ray $(y,\infty)$ is a neighborhood of $x$ contained in $B$. This shows $B$ is open.
+
+  If $x\in X\setminus B$, then $x$ is not an upper bound of $S$, thus there is some $s\in S$ greater than $x$. We have $s\in X\setminus B$ as well, for if $s$ was an upper bound, it would be the least upper bound. Therefore, $x\in (-\infty, s)\subseteq X\setminus B$, so $X\setminus B$ is also open.
+
+  Now $B$ and $X\setminus B$ form a separation of $X$. Therefore, if $X$ is connected, it must be a linear continuum.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Consider the following sets in the dictionary order. Which are linear continua?
+  \begin{enumerate}[(a)]
+    \item $\mathbb{Z}_+\times [0,1)$
+    \item $[0,1)\times\mathbb{Z}_+$
+    \item $[0,1)\times[0,1]$
+    \item $[0,1]\times[0,1)$
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) This is a linear continuum by Exercise 6 because $\mathbb{Z}_+$ is well ordered.
+
+  (b) There are no points between $0\times 1$ and $0\times 2$, so this is not a linear continuum.
+
+  (c) Clearly every pair of points has a point between them. Now let $S$ be a nonempty bounded set. Let $x$ be the least upper bound of $\pi_1(S)$. If $x\in\pi_1(S)$, then let
+  $$y = \sup\pi_2(\pi_1^{-1}\{x\}\cap S).$$
+  Then $(x,y)$ is the least upper bound of $S$.
+
+  If on the other hand $x\notin\pi_1(S)$, then the point $(x,0)$ is the least upper bound of $S$.
+
+  (d) The set $\{0\}\times [0,1)$ has no least upper bound.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  If $X$ is a well ordered set, show that $X\times [0,1)$ is a linear continuum.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Clearly there is a point between any two distinct points. Now let $S$ be a nonempty bounded set. Because $X$ is well ordered, the point $x = \sup\pi_1(S)$ exists.
+
+  If $x\notin \pi_1(S)$, then we have $\sup S = (x\times 0)$.
+
+  If $x\in\pi_1(S)$, then let $A = \pi_2(\pi_1^{-1}\{x\}\cap S)$ be the subset of points $a\in [0,1)$ such that $(x\times a)\in S$.
+  \begin{itemize}
+    \item If $\sup A < 1$, then $\sup S = (x\times a)$.
+    \item If $\sup A = 1$, then $\sup S = (x'\times 0)$, where $x'$ is the immediate successor of $x$. If no such successor existed, then $S$ would not be bounded.
+  \end{itemize}
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+    \item Let $X$ and $Y$ be ordered sets in the order topology. Show that if $f:X\to Y$ is order preserving and surjective, then $f$ is a homeomorphism.
+    \item Let $X = Y = \bar{\mathbb{R}}_+$. Given a positive integer $n$, show that the function $f(x) = x^n$ is order preserving and surjective. Conclude that it's inverse, the $n^{th}$ root function, is continuous.
+    \item Let $X$ be the subspace $(-\infty, -1)\cup[0,\infty)$ of $\mathbb{R}$. Show that the function $f:X\to\mathbb{R}$ defined by setting $f(x) = x+1$ if $x < -1$, and $f(x) = x$ if $x\ge 0$, is order preserving and surjective. Is $f$ a homeomorphism?
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) $f$ is bijective by the order preserving property. We have $f((x,y)) = (f(x),f(y))$, showing that $f^{-1}$ is continuous. A similar argument shows that $f$ is continuous, and thus $f$ is a homeomorphism.
+
+  (b) A simple inductive argument shows that $f$ is order preserving. Since $f(0) = 0$ and $f(x) > x$ for all $x > 1$, the intermediate value theorem shows that $f$ is surjective.
+
+  (c) $f$ is order preserving and surjective by casework, or intuition. However, $f$ is not a homeomorphism. This is because $X$ doesn't have the order topology as a subspace of $\mathbb{R}$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+    \item Is the product of path-connected spaces necessarily path connected?
+    \item If $A\subseteq X$ and $A$ is path connected, is $\bar{A}$ necessarily path connected?
+    \item If $f:X\to Y$ is continuous and $X$ is path connected, is $f(X)$ necessarily path connected?
+    \item If $A_\alpha$ is a collection of path connected subspaces of $X$ and if $\bigcap A_\alpha\ne\emptyset$, is $\bigcup A_\alpha$ necessarily path connected?
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) Let $a = (a_\alpha)$ and $b = (b_\alpha)$ be two points in $X = \prod X_\alpha$. For each $\alpha$, let $p_\alpha:[0,1]\to X_\alpha$ be a path from $a_\alpha$ to $b_\alpha$. Define
+  $$p(t) = (p_\alpha(t))_{\alpha\in J}.$$
+  If $U = \pi_\alpha^{-1}(U_\alpha)$ is a subbasis element of the product space, then
+  $$p^{-1}(U) = (\pi_\alpha\times p)^{-1}(U) = p_\alpha^{-1}(U),$$
+  which is open. This shows that the path $p$ is continuous, thus $X$ is path connected.
+
+  (b) No, the topologist's sine curve is a counterexample.
+
+  (c) Let $f(a),f(b)\in f(X)$; let $g:[0,1]\to X$ be a path from $a$ to $b$. Then $f\circ g$ is a path from $f(a)$ to $f(b)$. Therefore, $f(X)$ is path connected.
+
+  (d) Let $a$ be any point in $\bigcap A_\alpha$; choose $x\in A_\alpha$ and $y\in A_\beta$. Then we can define paths
+  $$f:[0,1]\to A_\alpha,\qquad g:[1,2]\to A_\beta$$
+  such that $f(0) = x$, $f(1) = g(1) = a$, and $g(2) = y$. Then the path $h$ formed by combining the domains of $f$ and $g$ is continuous by the pasting lemma. This shows that $\bigcup A_\alpha$ is path connected.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Assume that $\mathbb{R}$ is uncountable. Show that if $A\subseteq\mathbb{R}^2$ is countable, then $\mathbb{R}^2 - A$ is path connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Choose $x,y\in\mathbb{R}^2 - A$. Following the hint, there are uncountably many lines through $x$ which don't intersect $A$; choose one of them. There are also uncountably many lines through $y$ which don't intersect $A$; choose one of them which intersects the first line. This forms our path.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Show that if $U$ is an open connected subspace of $\mathbb{R}^2$, then $U$ is path connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  There is a general way to determine whether a property $P(x)$ holds for all points in a connected set $C$. It has a similar feel to induction.
+  \begin{itemize}
+    \item Find an initial point $x_0\in C$ which satisfies $P$.
+    \item Show that $\{x\in C\mid P(x)\}$ is both open and closed in $C$.
+  \end{itemize}
+  Since $C$ is connected, this would show that every $x$ satisfies the property.
+
+  Let $U$ be an open and connected subspace of $\mathbb{R}^2$. We can assume that $U$ is nonempty, since the empty set is path connected. Let $x_0\in U$. We will show that the set $A$ containing all points which can be connected to $x_0$ with a path is open and closed in $U$, and therefore $A = U$.
+
+  Let $x\in A$. Since $U$ is open, we can choose some $B(x,\epsilon)$ contained in $U$, which is path connected. Therefore, $B(x,\epsilon)$ is contained in $A$, and so $A$ is open.
+
+  Now let $x\notin A$. Again, we can choose a path connected ball $B(x,\epsilon)$ contained in $U - A$. If the open ball intersected $A$, this would mean $x\in A$, which is a contradiction. This shows that $A$ is closed.
+
+  Since $C$ is connected and $A\subseteq C$ is nonempty, open, and closed, we have $A = C$. This shows that $C$ is path connected.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  If $A$ is a connected subspace of $X$, does it follow that $\mathrm{Int}(A)$ and $\mathrm{Bd}(A)$ are connected? Does the converse hold?
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  If $A$ is connected, neither the interior nor the boundary need to be connected. For an informal example, let $A\subseteq\mathbb{R}^2$ be two balls connected by a line, where the interior removes the connecting line. Also, $\mathrm{Bd}((0,1)) = \{0,1\}$ is clearly not connected.
+
+  The converse also doesn't hold! For example, let $A = \mathbb{Q}$, where $\mathrm{Int}(A) = \emptyset$ and $\mathrm{Bd}(A) = \mathbb{R}$ are both connected.
+\end{proof}
+
+\pagebreak
+
+\end{document}
