@@ -1,0 +1,193 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\begin{document}
+\addtocounter{section}{24}
+\section{Components and Local Connectedness}
+
+\begin{exercise}
+  What are the components and path components of $\mathbb{R}_\ell$? What are the continuous functions $f:\mathbb{R}\to\mathbb{R}_\ell$?
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  For any points $a<b\in \mathbb{R}_\ell$ and a set $S$ containing $a$ and $b$, $S$ has the separation into $[-\infty,b)\cap S$ and $[b,\infty)\cap S$. Therefore, the only connected sets are single point sets. This is also clearly true of path connected sets.
+
+  Since $\mathbb{R}$ is connected, any continuous function $f:\mathbb{R}\to\mathbb{R}_\ell$ must be constant.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+    \item What are the components and path components of $\mathbb{R}^\omega$ in the product topology?
+    \item Consider $\mathbb{R}^\omega$ in the uniform topology. Show that $\mathbf{x}$ and $\mathbf{y}$ lie in the same component if and only if the sequence $\mathbf{x} - \mathbf{y}$ is bounded.
+    \item Consider $\mathbb{R}^\omega$ in the box topology. Show that $\mathbf{x}$ and $\mathbf{y}$ lie in the same component if and only if the sequence $\mathbf{x} - \mathbf{y}$ is nonzero for only finitely many indices.
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) By Exercise 24.8, the space $\mathbb{R}^\omega$ is path connected, so only has one path component.
+
+  (b) For any $x\in\mathbb{R}^\omega$, let $B_x$ be the collection $\{y\mid x - y\text{ is bounded}\}.$ I claim that every $B_x$ is path connected. WLOG assume that $x = 0$, and let $y$ be a bounded sequence such that $|y_n| < M$.
+
+  Consider the function $p(t) = ty$ with domain $[0,1]$. Fix $\epsilon > 0$. Then if $|t_1 - t_2| < \epsilon/M$, then
+  $$\bar{\rho}(p(t_1), p(t_2)) = \sup_{n\in\mathbb{N}} \min\{|t_1-t_2||y_n|,1\} < \epsilon.$$
+
+  This shows that $p$ is continuous (uniformly), and is thus a path from $0$ to $y$. This shows that $B_0$ is connected, and more generally that $B_x$ is connected for all $x$ by the distance-preserving homeomorphism $a\mapsto a-x$.
+
+  It's easy to see that each $B_x$ is open and they form a partition of $\mathbb{R}^\omega$, thus these are the components.
+
+  (c) This is similar to (b). Let $B_x$ instead be the collection $$B_x = \{y\mid x-y\text{ is almost all zeros}\}.$$
+  Again, WLOG assume that $x = 0$ and let $y$ be a sequence with almost all zeros. Consider the function $p(t) = ty$ with domain $[0,1]$. Let $t_0\in [0,1]$; let $U = \prod U_n$ be a neighborhood of $t_0$, where $U_n = \mathbb{R}$ for almost all $n$.
+
+  Let $J$ be the finite set of indices such that $U_n\ne\mathbb{R}$. We have
+  $$p^{-1}(U) = \bigcap_{n\in J} (\pi_n\circ p)^{-1}(U_n),$$
+  which is open since $\pi_n\circ p$ is continuous for each $n$. This shows that $p$ is a path from $0$ to $y$, therefore the set $B_0$ is path connected. More generally, $B_x$ is path connected for each $x$.
+  
+  Now suppose that $y$ instead has infinitely many nonzero terms. Consider the function $h:\mathbb{R}^\omega\to\mathbb{R^\omega}$ defined as
+  $$h(a_1,a_2,\dots) = (0\text{ if $y_n = 0$, otherwise } na_n/y_n)_{n\in\mathbb{N}}.$$
+  It's easy to check that $h$ is a homeomorphism, and that $h(0) = 0$ and $h(y)$ is unbounded. Therefore, $0$ and $y$ lie in different components. This shows that $B_0$ is a connected component, and similarly $B_x$ also is for each $x\in\mathbb{R}^\omega$.
+
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Show that the ordered square is locally connected, but not locally path connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Every basis element of the ordered square is connected since it's a linear continuum, which is sufficient to show that the ordered square is locally connected.
+
+  The ordered square is path connected at points of the form $x\times y$ such that $y\notin\{0,1\}$. On the other hand, consider the point $(0\times 1)$. Suppose there is some neighborhood $V$ of $(0\times 1)$ which is path connected. Choose some $\epsilon > 0$ such that $(\epsilon\times 1)\in V$. Since $V$ is path connected, there exists a path $f:[0,1]\to V$ from $(0\times 1)$ to $(\epsilon\times 1)$. The image $f([0,1])$ is then connected, so by the intermediate value theorem it contains all of $(0,\epsilon]\times [0,1]$. In particular, this means $(0,\epsilon]\times(0,1)\subseteq V$.
+
+  We've fit uncountably many disjoint open intervals into $V$, thus the inverse images form uncountably many disjoint open sets in $[0,1]$. This is impossible by the density of $\mathbb{Q}$ in $\mathbb{R}$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $X$ be locally path connected. Show that every open connected set in $X$ is path connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  By Theorem 25.4, every path component of $U$ is open. Since $U$ is connected, there can be only one component.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $X$ denote the rational points of the interval $[0,1]\times\{0\}$ of $\mathbb{R}^2$. Let $T$ denote the union of all line segments joining the point $P = 0\times 1$ to points of $X$.
+  \begin{enumerate}[(a)]
+    \item Show that $X$ is path connected, but only locally connected at $P$.
+    \item Find a subset of $\mathbb{R}^2$ which is path connected but not locally connected at any of it's points.
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) Each segment is path connected, so $X$ is path connected because of the common point $P$. Similarly, $X$ is locally connected at $P$.
+
+  For each $x\ne P$, choose a neighborhood not intersecting $P$. Then each subneighborhood $U$ intersects with infinitely many line segments corresponding to a set of rational numbers $A$. Choose some irrational $r$ such that $p < r < q$ for some $p,q\in A$. Then we can separate $U$ into
+  $$U\cap \{L_p\mid p < r\}\qquad\text{and}\qquad U\cap \{L_q\mid q > r\}.$$
+  These are both open in $U$.
+
+  (b) Defining $X$ as before, let $X_n = X + (0\times n)$ for each $n\in\mathbb{Z}_{\ge 0}.$ The space $\bigcup X_n$ is then path connected but not locally connected at any point.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  A space $X$ is said to be \textbf{weakly locally connected} at $x$ if for every neighborhood $U$ of $x$, there is a connected subspace of $X$ contained in $U$ that contains a neighborhood of $x$. Show that if $X$ is weakly locally connected at each of it's points, then $X$ is locally connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Suppose $X$ is weakly locally connected, and let $U$ be an open set in $X$. Let $C$ be a component of $U$, and let $x\in C$. By hypothesis, there exists a connected subspace $A$ contained in $U$ which contains a neighborhood $V$ of $x$. In particular,
+  $$x\in V\subseteq A\subseteq C,$$
+  thus $C$ is open. Therefore, every component of an open set in $X$ is open, so $X$ is locally connected.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Consider the "infinite broom" $X$ pictured in Figure 25.1. Show that $X$ is not locally connected at $p$, but is weakly locally connected at $p$.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Any neighborhood of a point $p$ must contain at least one of the points $a_n$ for some $n$. But then it must contain $a_{n-1}$, and so on, so that it contains every point $(a_i)$ to be connected. We can just choose a neighborhood of $p$ that doesn't contain $a_1$, and no subneighborhood can be connected.
+
+  On the other hand, let $U$ be a neighborhood of $p$. Then $U$ contains all broom fragments of sufficiently large index, so we can let $C$ be this collection of broom fragments. This will indeed contain a neighborhood of $x$. Note that it doesn't matter that \textbf{this} neighborhood is disconnected.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $p:X\to Y$ be a quotient map. Show that if $X$ is locally connected, then $Y$ is locally connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Intuitively, $p$ glues together points of $X$, so it should also glue together the components.
+
+  Let $U\subseteq Y$ be open; let $C$ be a component of $U$. We will show that $p^{-1}(C)$ is the union of components of $p^{-1}(U)$, and thus is open because $X$ is locally connected. It suffices to prove that if $x\in p^{-1}(C)$, then the connected component $A$ of $p^{-1}(U)$ containing $x$ is contained in $p^{-1}(C)$.
+
+  If $x\in p^{-1}(C)$, then $p(x)\in C$. Also, $p(A)$ is connected, and so $p(A)\subseteq C$, which implies $A\subseteq p^{-1}(C)$.
+
+  As the union of components in a locally connected space, $p^{-1}(C)$ must be open, thus $C$ is open because $p$ is a quotient map.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $G$ be a topological group; let $C$ be the connected component of $G$ containing the identity element $e$. Show that $C$ is a normal subgroup of $G$.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Because $x\mapsto ax$ is a homeomorphism, the set $aC$ is a connected component for each $a\in G$. A similar argument applies to $Ca$, which means the left and right cosets of $C$ match.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $X$ be a space. Let us define $x\sim y$ if there is no separation $X = A\cup B$ of $X$ into disjoint open sets such that $x\in A$ and $y\in B$.
+  \begin{enumerate}[(a)]
+    \item Show this relation is an equivalence relation. The equivalence classes are called the \textbf{quasicomponents} of $X$.
+    \item Show that each component of $X$ lies in a quasicomponent of $X$, and that the components and quasicomponents are the same if $X$ is locally connected.
+    \item Let $K$ denote the set $\{1/n\mid n\in\mathbb{Z}_+\}$. Determine the components, path components, and quasicomponents of the following subspaces of $\mathbb{R}^2$.
+    \begin{align*}
+      A &= (K\times [0,1]) \cup \{0\times 0\}\cup \{0\times 1\} \\
+      B &= A \cup ([0,1]\times \{0\}) \\
+      C &= (K\times [0,1]) \cup (-K\times [-1,0]) \cup ([0,1]\times -K) \cup ([-1,0]\times K)
+    \end{align*}
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) Clearly $x\sim x$ and $x\sim y\implies y\sim x$. Suppose for a contradiction that $x\sim y$ and $y\sim z$, but $x\not\sim z$. Then there exists a separation $X = A\cup B$ such that $x\in A$ and $z\in B$. Since either $y\in A$ or $y\in B$ must be true, one of the hypotheses $x\sim y$ or $y\sim z$ is contradicted.
+
+  (b) Let $C$ be a component of $X$. It suffices to show that $x\sim y$ for each $x,y\in C$. Indeed, if $x\not\sim y$, there would be a separation $X = A\cup B$ which goes against $C$ being connected.
+
+  Now assume $X$ is locally connected, which implies that all components of $X$ are open. The openness of the components gives us separations of $X$ which place the quasicomponents in the components, thus they are equal in this case.
+
+  (c) It helps to think this way:
+  \begin{itemize}
+    \item The component containing $x$ is the largest connected set containing $x$. Similarly with path components.
+    \item The quasicomponent containing $x$ is the intersection of all clopen sets containing $x$.
+  \end{itemize}
+
+  Now for $A$, let $L_n$ be the vertical line segment $\{1/n\}\times[0,1]$. Then each $L_n$ is a component, as well as the two corner points. These are all path connected, so the components are path components. Also, each vertical line is open and closed, and thus each $L_n$ is a quasicomponent.
+
+  Let $S$ be a clopen set in $A$ containing the point $0\times 0$. Since $S$ is open and contains every component it intersects, it contains the segments $L_n$ for all $n\ge N$. In particular, $S$ contains almost all the points $\frac{1}{n}\times 1$, so it's limit point $0\times 1$ is also in $S$ since $S$ is closed. This means $\{0\times 0,0\times 1\}$ is a quasicomponent of $A$!
+
+  $B$ adds a horizontal line segment $H$ along the bottom of $A$, which makes $B$ connected. Therefore, $B$ is the one component/quasicomponent.
+
+  Suppose that $0\times 0$ and $0\times 1$ could be joined by a path $f$ in $B$. Then $g = \pi_2\circ f$ is continuous and it's range is the entire interval $[0,1]$ by the intermediate value theorem. Now choose $t_0<1$ such that $g(t)\ge 1/2$ for all $t\ge t_0$. Then the function $f$ can be restricted to the domain $[t_0,1]$ to create a path from $f(t_0)$ to $f(1)$ which is contained in $A$, which is impossible since $\{0\times 1\}$ is a path component in $A$. Therefore, $\{0\times 1\}$ is a path component of $B$.
+
+  The set $C$ is made up of segments $I_n, J_n, K_n, L_n$ in quadrants 1,2,3,4 respectively. We will now show that $C$ is connected, and thus quasiconnected. Suppose that $C$ had a separation $C = A\cup B$, and assume $\{0,1\}\in A$. Since $A$ is open, it must contain all but finitely many segments $L_n$. Since $A$ is closed, $A$ must contain it's limit points of the form $\{0,1/n\}$, and thus every segment $I_n$. The process can be repeated for the remaining quadrants.
+
+  On the other hand, the path components of $C$ are the individual line segments.
+\end{proof}
+
+\pagebreak
+
+\end{document}
