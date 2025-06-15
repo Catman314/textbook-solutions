@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\begin{document}
+\addtocounter{section}{25}
+\section{Compact Spaces}
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+    \item Let $\mathcal{T}$ and $\mathcal{T}'$ be two topologies on the set $X$; suppose that $\mathcal{T}'\supseteq\mathcal{T}$. What does compactness of $X$ in one of these topologies imply about compactness in the other?
+    \item Suppose $X$ is compact Hausdorff under both $\mathcal{T}$ and $\mathcal{T}'$. Show that the topologies are either equal or incomparable.
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) Any open cover in $\mathcal{T}$ is also an open cover in $\mathcal{T}'$, so if $X$ is compact in $\mathcal{T}'$, then $X$ is also compact in $\mathcal{T}$.
+
+  (b) If $\mathcal{T}'\supseteq\mathcal{T}$ holds, then the identity map $\mathrm{id}:\mathcal{T}'\to\mathcal{T}$ is a continuous bijection, which is a homeomorphism by Theorem 26.6. This means the topologies are equal by the nature of the function $\mathrm{id}$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+    \item Show that in the finite complement topology on $\mathbb{R}$, every subspace is compact.
+    \item If $\mathbb{R}$ has the topology consisting of all sets $A$ such that $\mathbb{R}-A$ is either countable or all of $\mathbb{R}$, is the subspace $[0,1]$ compact?
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) Let $Y\subseteq\mathbb{R}$ and let $\mathcal{A}$ be an open cover of $Y$. We can assume that $\emptyset\notin\mathcal{A}$ since it has no effect. Now choose some $A\in\mathcal{A}$ arbitrarily, and choose neighborhoods $A_\alpha$ for each $\alpha\in \mathbb{R}-A$. The collection
+  $$\{A\}\cup\{A_\alpha\}$$
+  is a finite subcover.
+
+  (b) No, for example let $A_n = \mathbb{R} - \{1/k\mid k\ge n\}$ for each $n\in\mathbb{N}$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Show that a finite union of compact subspaces of $X$ is compact.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Let $K_1,\dots,K_n$ be compact subspaces of $X$. Let $\mathcal{A}$ be an open cover of $\bigcup K_i$. Then $\mathcal{A}$ has a finite subcover of each individual $K_i$, so taking the union of these subcovers gives us a finite subcover of $\bigcup K_i$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Show that every compact subspace of a metric space is bounded in that metric and is closed. Find a metric space in which not every closed and bounded subspace is compact.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (1) Let $X$ be a metric space with metric $d$. Let $K$ be a compact subspace of $X$. Let
+  $$\mathcal{A} = \{B_d(x,1)\mid x\in X\}$$
+  be an open cover of $K$. Since $K$ is compact, we can choose finitely many points $x_1,\dots,x_n$ such that the balls $\{B_d(x_i,1)\mid 1\le i\le n\}$ cover $K$. By the triangle inequality, we can find an upper bound for the diameter of $K$:
+  $$D \le \max_{1\le i,j\le n}d(x_i,x_j) + 2.$$
+  This shows that $K$ is bounded. Also, $K$ is closed by Theorem 26.3 since metric spaces are Hausdorff.
+
+  (2) If we instead use the standard bounded metric $\bar{d}$ which induces the standard topology on $\mathbb{R}$, the entire space $\mathbb{R}$ is closed and bounded but not compact.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $A$ and $B$ be disjoint compact subspaces of the Hausdorff space $X$. Show that there exist disjoint open sets $U$ and $V$ containing $A$ and $B$, respectively.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Since $B$ is compact, by Lemma 26.4 we can choose disjoint open sets $U_x$ and $V_x$ for each $x\in A$ such that $x\in U_x$ and $B\subseteq V_x$. The collection $\{U_x\}$ is an open cover of $A$, so it has a finite subcover $U_{x_1}\cup\dots\cup U_{x_n}$.
+
+  Let $U = \bigcup U_{x_i}$ and $V = \bigcap V_{x_i}$. These are disjoint open sets containing $A$ and $B$ respectively.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Show that if $f:X\to Y$ is continuous, where $X$ is compact and $Y$ is Hausdorff, then $f$ is a closed map.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Let $K$ be closed in $X$. Then $K$ is compact because $X$ is compact. Therefore, $f(K)$ is also compact, so $f(K)$ is closed since $Y$ is Hausdorff.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Show that if $Y$ is compact, then the projection $\pi_1:X\times Y\to X$ is a closed map.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Let $C$ be closed in $X\times Y$. We will show that $X - \pi_1(C)$ is open in $X$.
+
+  Fix some point $x\in X-\pi_1(C)$. Then the line $\pi_1^{-1}(\{x\}) = \{x\}\times Y$ is disjoint from $C$. By the tube lemma, there is some neighborhood $U$ of $x$ such that $U\times Y$ is disjoint with $C$. From this we have $U\subseteq X - \pi_1(C)$, which implies that $X - \pi_1(C)$ is open.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $f:X\to Y$; let $Y$ be compact Hausdorff. Then $f$ is continuous if and only if the graph of $f$,
+  $$G_f = \{x\times f(x)\mid x\in X\},$$
+  is closed in $X\times Y$.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  $(\implies)$ Suppose $f$ is continuous. Let $x\times y$ be a point such that $f(x)\ne y$. Since $Y$ is Hausdorff, we can choose disjoint open sets $U_1$ and $U_2$ containing $f(x)$ and $y$ respectively. Also, the set $f^{-1}(U_1)$ is open, so
+  $$f^{-1}(U_1)\times U_2$$
+  is a neighborhood of $x\times y$ which doesn't intersect $G_f$. We didn't use the assumption that $Y$ is compact in this direction.
+
+  $(\impliedby)$ Suppose that $G_f$ is closed. Let $C$ be a closed set in $Y$. Then the intersection $G_f\cap (X\times C)$ is closed, so by Exercise 26.7, the projection
+  $$\pi_1(G_f\cap(X\times C)) = f^{-1}(C)$$
+  is closed. Therefore, $f$ is continuous.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Generalize the tube lemma as follows:
+  
+  Let $A$ and $B$ be subspaces of $X$ and $Y$, respectively; let $N$ be an open set in $X\times Y$ containing $A\times B$. If $A$ and $B$ are compact, then there exist open sets $U$ and $V$ in $X$ and $Y$, respectively, such that
+  $$A\times B\subseteq U\times V\subseteq N.$$
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  The tube lemma is this in the special case where $A$ consists of a single point in $X$ and $B = Y$.
+
+  We have $A\times B$ is compact; let $\mathcal{A}$ be a finite open cover of $A\times B$ consisting of open sets $A_i\times B_i\subseteq N$ for $1\le i\le n$. For each $b\in B$, let $J_b$ be the set of indices $i$ such that $b\in B_i$. Let $U_b$ be the union of $A_i$ for $i\in J_b$, and let $V_b$ be the intersection of all $B_i$ for $i\in J_b$.
+
+  By construction, $U_b\times V_b$ contains the line $A\times\{b\}$, so the collection $$\{U_b\times V_b\mid b\in B\}$$ is an open cover of $A\times B$. By a similar method, we can create an open set contained in $N$ which contains $A\times B$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+    \item Prove the following partial converse to the uniform limit theorem:\\
+    Let $f_n:X\to\mathbb{R}$ be a sequence of continuous functions, with $f_n(x)\to f(x)$ for each $x\in X$. If $f$ is continuous, and if the sequence $f_n$ is monotone increasing, and if $X$ is compact, then the convergence is uniform.
+    \item Give examples to show that both hypotheses are necessary.
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) Fix $\epsilon > 0$. For each $x\in X$, choose an integer $N_x$ such that
+  $$f(x) - f_{N_x}(x) < \epsilon.$$
+  Since $f - f_{N_x}$ is continuous, we can choose a neighborhood $U_x$ of $x$ such that
+  $$f(a)-f_{N_x}(a) < \epsilon$$
+  for all $a\in U_x$. Since $X$ is compact, we can choose finitely many $x_1,\dots,x_n\in X$ such that $U_{x_1}\cup\dots\cup U_{x_n} = X$. Let $N = \max\{N_{x_1},\dots,N_{x_n}\}$, and we have $$f(x) - f_N(x) < \epsilon$$ for all $x\in X$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $X$ be a compact Hausdorff space. Let $\mathcal{A}$ be a collection of closed connected subsets of $X$ that is simply ordered by proper inclusion. Then
+  $$Y = \bigcap_{A\in\mathcal{A}}A$$
+  is connected.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Suppose $C\cup D$ is a separation of $Y$. Then $C$ and $D$ are both compact since they are closed in $X$. We can create disjoint open sets $U$ and $V$ containing $C$ and $D$ respectively, by Exercise 26.5.
+
+  Consider the set $A - (U\cup V)$ for each $A\in\mathcal{A}$. Each of these sets is closed in $X$, and also nonempty since $A$ is connected. The intersection
+  $$\bigcap_{A\in\mathcal{A}} (A - (U\cup V))$$
+  is then nonempty since $X$ is compact. This contradicts the fact that $Y\subseteq U\cup V$.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $p:X\to Y$ be a closed continuous surjective map such that $p^{-1}(\{y\})$ is compact for each $y\in Y$. (Such a map is called a \textbf{perfect map}) Show that if $Y$ is compact, then $X$ is compact.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Let $\mathcal{A}$ be an open cover of $X$. For each $y\in Y$, consider the collection of $A\in\mathcal{A}$ which intersect $p^{-1}(\{y\})$. This has a finite subcover of $p^{-1}(\{y\})$, which we will call $\mathcal{A}_y$.
+
+  Let $V_y = \bigcup\mathcal{A}_y$.
+  Since $p$ is a closed map, the set $U_y = Y - p(X - V_y)$ is open and contains $y$ for each $y\in Y$. We have
+  $$p^{-1}(U_y) = X - p^{-1}(p(X-V_y)) \subseteq V_y.$$
+
+  Since $Y$ is compact, we can choose finitely many $y_1,\dots,y_n$ such that the sets $U_{y_k}$ cover $Y$. Then their inverse images under $p$ cover $X$, thus the sets $V_{y_k}$ cover $X$. Since each $V_{y_k}$ is just a finite union of sets in $\mathcal{A}$, we have our finite subcover of $\mathcal{A}$.
+
+  We didn't use the assumption that $p$ is continuous or surjective. It just needs to be a closed map.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $G$ be a topological group.
+  \begin{enumerate}[(a)]
+    \item Let $A$ and $B$ be subspaces of $G$. If $A$ is closed and $B$ is compact, show $A\cdot B$ is closed.
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  
+\end{proof}
+
+\pagebreak
+
+
+\end{document}
