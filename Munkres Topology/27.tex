@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, enumerate}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]
+
+\begin{document}
+\addtocounter{section}{26}
+\section{Compact Subspaces of the Real Line}
+
+\begin{exercise}
+  Prove that if $X$ is an ordered set in which every closed interval is compact, then $X$ has the least upper bound property.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Suppose for a contradiction that $S$ is a nonempty bounded subset of $X$ with no least upper bound. Then the set $B$ of upper bounds of $S$ is nonempty. Let $[a,b]$ be a closed interval containing $S$. We will show that $[a,b]$ is not compact.
+
+  The collection
+  $$\mathcal{A} = \mathcal{A}_1\cup\mathcal{A}_2 = \{(-\infty, x)\mid x\in S\}\cup \{(x,\infty)\mid x\in B\}$$
+  is an open cover of $X$ because $S$ has no least upper bound (and no largest element). There is no finite subcover of $[a,b]$ because $\mathcal{A}_1$ and $\mathcal{A}_2$ are disjoint and have no largest interval.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $X$ be a metric space with metric $d$; let $A\subseteq X$ be nonempty.
+  \begin{enumerate}[(a)]
+    \item Show that $d(x,A) = 0$ if and only if $x\in \bar{A}$.
+    \item Show that if $A$ is compact, then $d(x,A) = d(x,a)$ for some $a\in A$.
+    \item Define the $\epsilon$-neighborhood of $A$ in $X$ to be the set
+    $$U(A,\epsilon) = \{x\mid d(x,A) < \epsilon\}$$
+    Show that $U(A,\epsilon)$ is the union of the open balls $B_d(a,\epsilon)$ for $a\in A$.
+    \item Assume $A$ is compact. Let $U$ be an open set containing $A$. Show that some $\epsilon$-neighborhood of $A$ is contained in $U$.
+    \item Show that the result in (d) need not hold if $A$ is closed but not compact.
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) Assume that $d(x,A) = \inf_{a\in A} d(x,a) = 0$. Let $B_d(x,\epsilon)$ be a neighborhood of $x$. By hypothesis, there is some element $a\in A$ such that $d(x,a) < \epsilon$, so we have $x\in \bar{A}$ since $\epsilon$ was arbitrary.
+
+  If $d(x,A) > 0$, then the ball $B_d(x,d(x,A))$ does not intersect $A$, thus $x\notin\bar{A}$.
+
+\vspace{0.5em}
+  (b) If $A$ is compact, then the function $a\mapsto d(x,a)$ has a lowest output by the extreme value theorem.
+
+\vspace{0.5em}
+  (c) If $x\in U(A,\epsilon)$, then $d(x,A) < \epsilon$, which implies $d(x,a) < \epsilon$ for some $a\in A$. The same argument applies in reverse.
+
+  \vspace{0.5em}
+  (d) Let $\mathcal{A} = \{B(x,\epsilon_x)\mid x\in A\}$, where $\epsilon_x$ is chosen for each $x\in A$ so that the larger ball $B(x,2\epsilon)$ lies inside $U$. Let $\mathcal{B}$ be a finite subcover consisting of
+  $$\{B(x_k,\epsilon_{x_k})\mid 1\le k\le n\}.$$
+  Let $\epsilon$ be the smallest of the $\epsilon_k$ for $1\le k\le n$. For any $a\in B(x_k, \epsilon_{x_k})$, we have
+  $$B(a,\epsilon)\subseteq B(a, \epsilon_k) \subseteq B(x_k, 2\epsilon_{x_k})\subseteq U,$$
+  so the set $B(A, \epsilon)$ is contained in $U$.
+
+  \vspace{0.5em}
+  (e) In $\mathbb{R}^2$, let $A$ be the horizontal line $x = 0$, which is closed. Define
+  $$U = \left\{x\times y\mid |y| < \frac{1}{1+x^2}\right\}.$$
+  This set is open because it's the inverse image of $(0,\infty)$ under the continuous function $x\times y\mapsto \frac{1}{1+x^2} - |y|$. This is a counterexample because $\frac{1}{1+x^2}\to 0$ as $x$ gets large.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Recall that $\mathbb{R}_K$ denotes $\mathbb{R}$ in the $K$-topology.
+  \begin{enumerate}[(a)]
+    \item Show that $[0,1]$ is not compact as a subspace of $\mathbb{R}_K$.
+    \item Show that $\mathbb{R}_K$ is connected.
+    \item Show that $\mathbb{R}_K$ is not path connected.
+  \end{enumerate}
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  (a) Define an open cover with the sets
+  $$\{\mathbb{R}-K, (2/3,2/1),(2/5,2/3),(2/7,2/5),\dots\}.$$
+
+  \vspace{0.5em}
+  (b) Following the hint, note that $(-\infty, 0)$ and $(0,\infty)$ inherit the usual topology on $\mathbb{R}$, meaning they are connected. The set $\{0\}$ is not open in either $[0,\infty)$ or $(-\infty,0]$, so both of these intervals are connected, and so the entire interval is connected.
+
+  \vspace{0.5em}
+  (c) Suppose that there were a path $p:[0,1]\to\mathbb{R}_K$ from $0$ to $1$. Since $\mathbb{R}_K$ is finer than $\mathbb{R}$, the same function $p:[0,1]\to\mathbb{R}$ is also continuous, so the intermediate value theorem applies; we have $[0,1]\subseteq p([0,1])$. On the other hand, we know that $p([0,1])$ is compact in $K$, so since $[0,1]$ is a closed subset of $p([0,1])$, it is also compact. This contradicts the result of (a).
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Show that a connected metric space having more than one point is uncountable.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Let $X$ be a connected metric space with at least two points. Then $X\times X$ is also connected, and so $d(X\times X)$ is connected in $\mathbb{R}$. Since $X$ has at least two points, there is some $b>0$ such that $[0,b]\in d(X\times X)$. At this point, $X\times X$ is clearly uncountable, and so is $X$ by basic set theory.
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+  Let $X$ be a compact Hausdorff space; let $\{A_n\}$ be a countable collection of closed sets of $X$. Show that if each $A_n$ has empty interior in $X$, then the union $\bigcup A_n$ has empty interior in $X$.
+\end{exercise}
+\hrule
+\begin{proof}[Solution]
+  Let $x\in \bigcup A_n$; let $U$ be a neighborhood of $x$. We will show that $U$ is not contained in $\bigcup A_n$.
+
+  For each $n\in\mathbb{N}$, choose some $x_n\in A_n$.
+
+  Let $U_0 = U$, and inductively for each $n\in\mathbb{N}$, choose a neighborhood $U_n\subseteq U_{n-1}$ such that $\bar{U_n}$ doesn't contain $x_n$.
+\end{proof}
+
+\pagebreak
+
+\end{document}
